@@ -3,8 +3,18 @@
 
 <div class="container-login">
     <div class="container-form-cadastro">
+        <form class="main-form" action="{{ form_action }}" metohd="POST"></form>
+        {% csrf_token %}
         <div class="form">
             <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+            {% for field in form %}
+                <label for=" field.id_for_label">{{ field.label }}</label>
+                {{field}}
+
+                {% if field.help-text %}
+                    <p>{{ field.help-text }}</p>
+                {% endif %}
+            {% endfor %}
         </div>
         
     </div>
