@@ -7,14 +7,15 @@
         {% csrf_token %}
         <div class="form">
             <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
-            {% for field in form %}
+            {% comment %} {% for field in form %}
                 <label for=" field.id_for_label">{{ field.label }}</label>
                 {{field}}
 
                 {% if field.help-text %}
                     <p>{{ field.help-text }}</p>
                 {% endif %}
-            {% endfor %}
+            {% endfor %} {% endcomment %}
+            {{ form }}
         </div>
         
     </div>
