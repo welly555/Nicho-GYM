@@ -38,9 +38,9 @@
     width: 10rem;
     height: 10rem;
 }
-.form{
-    /* margin: 0 auto; */
-}
+/* .form{
+    /* margin: 0 auto; 
+} */
 .form-content{
     /* display: flex;
     flex-direction: column;
@@ -49,6 +49,7 @@
     max-width: 64rem;
     margin-bottom: .5rem;
     margin-left: 4rem;
+    
    
 }
 .form-content label{
@@ -65,6 +66,10 @@
     padding: 1.2rem;
     border-radius: .7rem;
     border: 1px solid #1e1e1e;
+}
+.form-content input:focus, 
+.form-content input:hover{
+    border: 1px solid #AEC7FF;
 }
 .form-button{
     margin: 0 auto;
@@ -86,4 +91,23 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem,1fr));
     gap: .5rem;
+}
+
+.message {
+    position: absolute;
+    left: 70rem;
+    margin-top: 1rem;
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #1e1e1e;
+    background: #DEDEDE;
+    color: #1e1e1e;
+    text-align: center;
+}
+
+.message-error{
+    border: 1px solid #E37777;
+    background: #BE3030;
+    color: #E37777;
 }

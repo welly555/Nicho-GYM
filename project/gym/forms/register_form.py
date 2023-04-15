@@ -14,10 +14,21 @@ def strong_password(senha):
              'uma letra minuscula, '
              'uma maiuscula, '
              'um numero, '
-             'e ter no minimo 8 caracteres'
+             'e ter no minimo 8 caracteres.'
              ),
-            code='invalid'
+            code='Invalid'
         )
+
+
+# def phone(phone):
+#     regex = re.compile(r'^\+?+1?d{9,12}$')
+#     if not regex.match(phone):
+#         raise ValidationError(
+#             (
+#                 'o numero do telefone é no formato (99) 9 9999-9999'
+#             ),
+#             code='Invalid'
+#         )
 
 
 def add_attr(field, attr_name, attr_new_val):
@@ -36,7 +47,7 @@ class RegisterForm(forms.ModelForm):
             'Nome_academia',
             'Dono',
             'email',
-            'email_confirmar',
+            'telefone',
             'cnpj',
             'Endereco',
             'senha',
@@ -48,7 +59,7 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
         add_placeholder(self.fields['Dono'], 'Ex.: João Almaida')
         add_placeholder(self.fields['email'], 'Ex.: João@.com')
-        add_placeholder(self.fields['email_confirmar'], 'Ex.: João@.com')
+        add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
         add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
         add_placeholder(self.fields['senha'], 'senha')
@@ -71,10 +82,13 @@ class RegisterForm(forms.ModelForm):
         required=True,
         label='E-mail:',
     )
-    email_confirmar = forms.EmailField(
-        error_messages={'required': 'E-mail necessario'},
-        required=True,
-        label='Confirmar E-mail:',
+    telefone = forms.CharField(
+        # validators=[phone],
+        error_messages={
+            'requerid': 'telefone invalido'
+        },
+        label='Telefone:',
+
     )
     cnpj = forms.CharField(
         error_messages={'requered': 'precisa do cnpj ativo da empresa'},
@@ -92,11 +106,11 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'required': 'Password invalida'
         },
-        help_text=(
-            'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'
-            'um numero e um caracter especial.'
-            'E precisa ter o minimo 8 caracteres'
-        ),
+        # help_text=(
+        #     'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'  # noqa: E501
+        #     'um numero e um caracter especial.'
+        #     'E precisa ter o minimo 8 caracteres'
+        # ),
         validators=[strong_password],
         label='Senha:'
     )
@@ -106,24 +120,13 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'required': 'Password invalida'
         },
-        help_text=(
-            'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'
-            'um numero e um caracter especial.'
-            'E precisa ter o minimo 8 caracteres'
-        ),
+        # help_text=(
+        #     'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'  # noqa: E501
+        #     'um numero e um caracter especial.'
+        #     'E precisa ter o minimo 8 caracteres'
+        # ),
         label='Confrimar senha:'
     )
-
-    def clean_email(self):
-        email = self.cleaned_data('email', '')
-        exists = Academia.objects.filter(email=email).exists()
-
-        if exists:
-            raise ValidationError(
-                'Utilize um email valido', code='invalid'
-            )
-
-        return email
 
     def clean(self):
         cleaned_data = super().clean()
@@ -137,12 +140,12 @@ class RegisterForm(forms.ModelForm):
                     'confirma_senha': 'senhas diferente'
                 }
             )
-        email = cleaned_data.get('email')
-        email_confirmed = cleaned_data.get('email_confirmar')
 
-        if email != email_confirmed:
-            raise ValidationError(
-                {
-                    'email_confirmar': 'emails diferente'
-                }
-            )
+        email = cleaned_data.get('E_mail')
+
+        exists = Academia.objects.filter(E_mail=email).exists()
+
+        if exists:
+            raise ValidationError({
+                'email': 'email invalido'
+            })

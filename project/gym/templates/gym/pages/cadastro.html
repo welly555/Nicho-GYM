@@ -1,14 +1,22 @@
 {% include 'gym/partials/head.html' %}
 {% load static%}
 
+{% if form.errors %}
+        <div class="form-gruop">
+            <div class="message message-error">
+                tem error no form
+            </div>
+        </div>
+{% endif %}
+
 <div class="container-login">
-    <div class="container-form-cadastro">
-        
+    
+    <div class="container-form-cadastro"> 
         <div class="form">
             <div class="logo">
                 <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
             </div>
-            <form class="main-form" action="{% url 'create' %}" metohd="POST">
+            <form class="main-form" action="{% url 'gym:create' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-content form-content-grid">
                     {% for field in form %}
@@ -20,16 +28,18 @@
                                 <p class="help-text">{{ field.help_text }}</p>
                             {% endif %}
 
-                            {{ fiedl.errors }}
+                            {{ field.errors }}
                         </div>
 
                     {% endfor %} 
                 </div>
+                
                 <div class="form-content form-content-grid">
                     <div class="form-grup form-button">
                         <button type="submit">cadastra-se</button>
                     </div>
                 </div>
+                
             </form>
         </div>
         
