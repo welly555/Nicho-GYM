@@ -1,7 +1,13 @@
-{% if message %}
-    {% for message in messages %}
-        <div class="message {{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+{% include 'gym/partials/head.html' %}
+{% load static%}
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

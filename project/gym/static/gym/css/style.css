@@ -4,7 +4,10 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+body{
+    font-family: 'Roboto', serif ;
+    
+}
 .container-login{
     background-color: #AEC7FF;
     width: 100%;
@@ -13,6 +16,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    
 }
 .container-form{
     background-color: #DEDEDE;
@@ -20,7 +24,6 @@
     height: 30rem;
     border-radius: 9px;
     box-shadow: 20px 4px 4px rgba(0, 0, 0, 0.25);
-    
 }
 .container-form-cadastro{
     background-color: #DEDEDE;
@@ -37,6 +40,19 @@
 .logo img{
     width: 10rem;
     height: 10rem;
+}
+.logo-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.img{
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    
+     
 }
 /* .form{
     /* margin: 0 auto; 
@@ -104,10 +120,26 @@
     background: #DEDEDE;
     color: #1e1e1e;
     text-align: center;
+    font:1.4rem
 }
 
 .message-error{
     border: 1px solid #E37777;
-    background: #BE3030;
-    color: #E37777;
+    background: #E37777;
+    color: #FFFF;
+}
+.message-success{
+    border: 1px solid #80E377;
+    background: #80E377;
+    color: #FFFF;
+}
+.button-login{
+    position: relative;
+    left: 1rem;
+}
+
+.content-login{
+    position: relative;
+    left: -3rem;
+    margin-bottom: 5rem;
 }

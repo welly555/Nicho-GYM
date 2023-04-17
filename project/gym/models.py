@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
 # Create your models here.
@@ -9,7 +10,7 @@ class Academia(models.Model):
     E_mail = models.EmailField(max_length=254)
     cnpj = models.CharField(max_length=14)
     Endereco = models.CharField(max_length=254)
-    password = models.CharField(max_length=30)
+    senha = models.CharField(max_length=30)
     telefone = models.IntegerField(default=None)
 
     def __str__(self):

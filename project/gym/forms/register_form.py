@@ -46,7 +46,7 @@ class RegisterForm(forms.ModelForm):
         fields = [
             'Nome_academia',
             'Dono',
-            'email',
+            'E_mail',
             'telefone',
             'cnpj',
             'Endereco',
@@ -58,7 +58,7 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
         add_placeholder(self.fields['Dono'], 'Ex.: João Almaida')
-        add_placeholder(self.fields['email'], 'Ex.: João@.com')
+        add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
         add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
@@ -77,7 +77,7 @@ class RegisterForm(forms.ModelForm):
         label='Responsavel:'
     )
 
-    email = forms.EmailField(
+    E_mail = forms.EmailField(
         error_messages={'required': 'E-mail necessario'},
         required=True,
         label='E-mail:',
@@ -147,5 +147,5 @@ class RegisterForm(forms.ModelForm):
 
         if exists:
             raise ValidationError({
-                'email': 'email invalido'
+                'E_mail': 'email invalido'
             })

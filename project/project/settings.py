@@ -131,10 +131,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MESSAGE_TAG = {
+MESSAGE_TAGS = {
     constants.DEBUG: 'message-debug',
     constants.ERROR: 'message-error',
     constants.INFO: 'message-info',
     constants.SUCCESS: 'message-success',
-    constants.WARNING: 'message-waring',
+    constants.WARNING: 'message-warning',
 }
