@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
 # Create your models here.
@@ -9,7 +10,8 @@ class Academia(models.Model):
     E_mail = models.EmailField(max_length=254)
     cnpj = models.CharField(max_length=14)
     Endereco = models.CharField(max_length=254)
-    password = models.CharField(max_length=30)
+    senha = models.CharField(max_length=30)
+    telefone = models.IntegerField(default=None)
 
     def __str__(self):
         return self.Nome_academia
@@ -24,8 +26,9 @@ class Aluno(models.Model):
     Valor_pagamento = models.FloatField()
     Situacao = models.BooleanField(default=True)
     Data_inscricao = models.DateField(auto_now_add=True)
+    telefone = models.IntegerField(default=None)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
         return self.Nome
@@ -35,8 +38,9 @@ class Personal(models.Model):
     nome = models.CharField(max_length=150)
     sobrenome = models.CharField(max_length=100)
     E_mail = models.EmailField(max_length=254)
+    telefone = models.IntegerField(default=None)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
         return self.Nome
@@ -46,7 +50,7 @@ class Risco(models.Model):
     Problema = models.CharField(max_length=300)
     Recomendacao = models.CharField(max_length=300)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
         Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
 
@@ -63,11 +67,11 @@ class TipoAvaliacao(models.Model):
 
 class Avaliacao(models.Model):
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
         Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
     TipoAvaliacao = models.ForeignKey(
-        TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+        TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
     Data_avaliacao = models.TimeField(auto_now_add=True)
     peso = models.FloatField()
     altura = models.FloatField()
