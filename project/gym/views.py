@@ -55,7 +55,9 @@ def login_create(request):
         return redirect('gym:login')
 
 
+
 def cadastro(request):
+
     messages.success(request, 'usuario cadastrado')
     register_from_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_from_data)
@@ -80,3 +82,4 @@ def cadastro_create(request):
         del (request.session['register_form_data'])
 
     return redirect('gym:cadastro')
+
