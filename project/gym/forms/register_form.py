@@ -14,11 +14,10 @@ def strong_password(senha):
              'uma letra minuscula, '
              'uma maiuscula, '
              'um numero, '
-             'e ter no minimo 8 caracteres'
+             'e ter no minimo 8 caracteres.'
              ),
-            code='invalid'
+            code='Invalid'
         )
-
 
 def add_attr(field, attr_name, attr_new_val):
     existing = field.widget.attrs.get(attr_name, '')
@@ -32,105 +31,110 @@ def add_placeholder(field, placeholder_val):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Academia
-        fields = '__all__'
+        fields = [
+            'Nome_academia',
+            'Dono',
+            'E_mail',
+            'telefone',
+            'cnpj',
+            'Endereco',
+            'senha',
+            'confirma_senha'
+        ]
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     add_placeholder(self.fields['Nome_da_academia'], 'Ex.: fitnes gym')
-    #     add_placeholder(self.fields['Proprietario'], 'Ex.: João Almaida')
-    #     add_placeholder(self.fields['email'], 'Ex.: João@.com')
-    #     add_placeholder(self.fields['email_confirmar'], 'Ex.: João@.com')
-    #     add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
-    #     add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
-    #     add_placeholder(self.fields['senha'], 'senha')
-    #     add_placeholder(self.fields['confirma_senha'], 'confirmar senha')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
+        add_placeholder(self.fields['Dono'], 'Ex.: João Almaida')
+        add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
+        add_placeholder(self.fields['telefone'], '(00) 00000-0000')
+        add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
+        add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
+        add_placeholder(self.fields['senha'], 'senha')
+        add_placeholder(self.fields['confirma_senha'], 'confirmar senha')
 
-    # Nome_da_Academia = forms.CharField(
-    #     error_messages={'requered': 'Escreva o nome da sua academia'},
-    #     required=True,
-    #     label='Nome da academia',
-    # )
+    Nome_academia = forms.CharField(
+        error_messages={'requered': 'Escreva o nome da sua academia'},
+        required=True,
+        label='Nome da academia:',
+    )
 
-    # Poprietario = forms.CharField(
-    #     error_messages={'requered': 'Escreva o nome do(a) proprietario'},
-    #     required=True,
-    #     label='Responsavel'
-    # )
+    Dono = forms.CharField(
+        error_messages={'requered': 'Escreva o nome do(a) proprietario'},
+        required=True,
+        label='Responsavel:'
+    )
 
-    # email = forms.EmailField(
-    #     error_messages={'required': 'E-mail necessario'},
-    #     required=True,
-    #     label='E-mail',
-    #     help_text='o email tem que ser valido'
-    # )
-    # email_confirmar = forms.EmailField(
-    #     error_messages={'required': 'E-mail necessario'},
-    #     required=True,
-    #     label='E-mail',
-    #     help_text='o email tem que ser valido'
-    # )
-    # cnpj = forms.CharField(
-    #     error_messages={'requered': 'precisa do cnpj ativo da empresa'},
-    #     required=True,
-    #     label='CNPJ'
-    # )
-    # endereco = forms.CharField(
-    #     error_messages={'requered': 'Escreva o endereço da academia'},
-    #     required=True,
-    #     label='Academia'
-    # )
-    # senha = forms.CharField(
-    #     required=True,
-    #     widget=forms.PasswordInput(),
-    #     error_messages={
-    #         'required': 'Password invalida'
-    #     },
-    #     help_text=(
-    #         'A senha precisa ter pelo menos um letra maiuscula, um minuscula,'
-    #         'um numero e um caracter especial.'
-    #         'E precisa ter o minimo 8 caracteres'
-    #     ),
-    #     validators=[strong_password],
-    #     label='Password'
-    # )
-    # confirma_senha = forms.CharField(
-    #     required=True,
-    #     widget=forms.PasswordInput(),
-    #     error_messages={
-    #         'required': 'Password invalida'
-    #     },
-    #     label='Password'
-    # )
+    E_mail = forms.EmailField(
+        error_messages={'required': 'E-mail necessario'},
+        required=True,
+        label='E-mail:',
+    )
+    telefone = forms.CharField(
+        # validators=[phone],
+        error_messages={
+            'requerid': 'telefone invalido'
+        },
+        label='Telefone:',
 
-    # def clean_email(self):
-    #     email = self.cleaned_data('email', '')
-    #     exists = Academia.objects.filter(email=email).exists()
+    )
+    cnpj = forms.CharField(
+        error_messages={'requered': 'precisa do cnpj ativo da empresa'},
+        required=True,
+        label='CNPJ:'
+    )
+    Endereco = forms.CharField(
+        error_messages={'requered': 'Escreva o endereço da academia'},
+        required=True,
+        label='Endereço:'
+    )
+    senha = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(),
+        error_messages={
+            'required': 'Password invalida'
+        },
+        # help_text=(
+        #     'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'  # noqa: E501
+        #     'um numero e um caracter especial.'
+        #     'E precisa ter o minimo 8 caracteres'
+        # ),
+        validators=[strong_password],
+        label='Senha:'
+    )
+    confirma_senha = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(),
+        error_messages={
+            'required': 'Password invalida'
+        },
+        # help_text=(
+        #     'A senha precisa ter pelo menos uma letra maiuscula, uma minuscula,'  # noqa: E501
+        #     'um numero e um caracter especial.'
+        #     'E precisa ter o minimo 8 caracteres'
+        # ),
+        label='Confrimar senha:'
+    )
 
-    #     if exists:
-    #         raise ValidationError(
-    #             'Utilize um email valido', code='invalid'
-    #         )
+    def clean(self):
+        cleaned_data = super().clean()
 
-    #     return email
+        password = cleaned_data.get('senha')
+        password_confirmed = cleaned_data.get('confirma_senha')
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
+        if password != password_confirmed:
+            raise ValidationError(
+                {
+                    'confirma_senha': 'senhas diferente'
+                }
+            )
 
-    #     password = cleaned_data.get('senha')
-    #     password_confirmed = cleaned_data.get('confirma_senha')
+        email = cleaned_data.get('E_mail')
 
-    #     if password != password_confirmed:
-    #         raise ValidationError(
-    #             {
-    #                 'confirma_senha': 'senhas diferente'
-    #             }
-    #         )
-    #     email = cleaned_data.get('email')
-    #     email_confirmed = cleaned_data.get('email_confirmar')
+        exists = Academia.objects.filter(E_mail=email).exists()
 
-    #     if email != email_confirmed:
-    #         raise ValidationError(
-    #             {
-    #                 'email_confirmar': 'emails diferente'
-    #             }
-    #         )
+        if exists:
+            raise ValidationError({
+                'E_mail': 'email invalido'
+            })
+

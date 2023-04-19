@@ -1,11 +1,39 @@
 {% include 'gym/partials/head.html' %}
 {% load static%}
 
+{% include 'gym/partials/message.html' %}
 <div class="container-login">
-    <div class="container-form">
+    <div class="container-form login">
         <div class="form">
-            <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+            <div class="logo-login">
+                <img class='img' src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+            </div>
         </div>
+        <form class="main-form-login" action="{% url 'gym:login_create' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-content content-login form-content-grid">
+                {% for field in form %}
+                    <div class="form-grup">
+                        <label for=" field.id_for_label">{{ field.label }}</label>
+                        {{field}}
+
+                        {% if field.help_text %}
+                            <p class="help-text">{{ field.help_text }}</p>
+                        {% endif %}
+
+                        {{ field.errors }}
+                    </div>
+
+                {% endfor %} 
+            </div>
+            
+            <div class="form-content ">
+                <div class="button-login">
+                    <button type="submit">login</button>
+                </div>
+            </div>
+            
+        </form>
         
     </div>
 </div>
