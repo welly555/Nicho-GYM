@@ -90,7 +90,7 @@ body{
     display: flex;
     justify-content: center;
 }
-.form-content button{
+.form-button button{
     font-size: 1.1rem;
     border: none;
     background-color: #1583c1;
@@ -100,7 +100,7 @@ body{
     border-radius: .7rem;
     transition: all 300ms ease-in-out;
 }
-.form-content button:hover{
+.form-button button:hover{
     filter: drop-shadow(13px 4px 6px rgba(0, 0, 0, 0.25));
 }
 .form-content-grid{
