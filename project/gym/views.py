@@ -79,4 +79,4 @@ def cadastro_create(request):
 
         del (request.session['register_form_data'])
 
-    return redirect('gym:cadastro')
+    return redirect('gym:login')
