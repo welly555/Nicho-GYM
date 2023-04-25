@@ -78,5 +78,6 @@ def cadastro_create(request):
         messages.success(request, 'usuario cadastrado')
 
         del (request.session['register_form_data'])
+        return redirect('gym:login')
 
-    return redirect('gym:login')
+    return redirect('gym:cadastro')
