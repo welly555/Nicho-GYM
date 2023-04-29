@@ -20,17 +20,6 @@ def strong_password(senha):
         )
 
 
-# def phone(phone):
-#     regex = re.compile(r'^\+?+1?d{9,12}$')
-#     if not regex.match(phone):
-#         raise ValidationError(
-#             (
-#                 'o numero do telefone é no formato (99) 9 9999-9999'
-#             ),
-#             code='Invalid'
-#         )
-
-
 def add_attr(field, attr_name, attr_new_val):
     existing = field.widget.attrs.get(attr_name, '')
     field.widget.attrs[attr_name] = f'{existing} {attr_new_val}'.strip()
