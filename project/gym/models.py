@@ -13,6 +13,7 @@ class Academia(models.Model):
     senha = models.CharField(max_length=30)
     telefone = models.CharField(max_length=15)
 
+
     def __str__(self):
         return self.Nome_academia
 

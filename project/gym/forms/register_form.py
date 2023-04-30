@@ -56,6 +56,7 @@ class RegisterForm(forms.ModelForm):
         self.fields['cnpj'].widget.attrs.update({'class': 'mask-cnpj'})
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
 
+
     Nome_academia = forms.CharField(
         error_messages={'requered': 'Escreva o nome da sua academia'},
         required=True,
@@ -117,6 +118,7 @@ class RegisterForm(forms.ModelForm):
         #     'E precisa ter o minimo 8 caracteres'
         # ),
         label='Confirmar senha:'
+
     )
 
     def clean(self):
@@ -140,3 +142,4 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError({
                 'E_mail': 'email invalido'
             })
+
