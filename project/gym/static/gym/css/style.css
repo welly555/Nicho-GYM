@@ -123,7 +123,7 @@ body{
     position: absolute;
     left: 70rem;
     margin-top: 1rem;
-    width: 10rem;
+    width: 11rem;
     padding: 1rem;
     border-radius: 4px;
     border: 1px solid #1e1e1e;
@@ -132,7 +132,9 @@ body{
     text-align: center;
     font:1.4rem
 }
-
+.message ul{
+    list-style-type: none;
+}
 .message-error{
     border: 1px solid #E37777;
     background: #E37777;
@@ -144,7 +146,6 @@ body{
     color: #FFFF;
 }
 
-
 .content-login{
     position: relative;
     left: -3rem;
@@ -153,3 +154,9 @@ body{
 
 }
 
+.links{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    color: #FFFF;
+}
