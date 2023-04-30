@@ -8,10 +8,10 @@ class Academia(models.Model):
     Nome_academia = models.CharField(max_length=254)
     Dono = models.CharField(max_length=254)
     E_mail = models.EmailField(max_length=254)
-    cnpj = models.CharField(max_length=14)
+    cnpj = models.CharField(max_length=18)
     Endereco = models.CharField(max_length=254)
     senha = models.CharField(max_length=30)
-    telefone = models.IntegerField(default=None)
+    telefone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.Nome_academia

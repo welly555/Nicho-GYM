@@ -19,6 +19,7 @@ def strong_password(senha):
             code='Invalid'
         )
 
+
 def add_attr(field, attr_name, attr_new_val):
     existing = field.widget.attrs.get(attr_name, '')
     field.widget.attrs[attr_name] = f'{existing} {attr_new_val}'.strip()
@@ -52,6 +53,8 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
         add_placeholder(self.fields['senha'], 'senha')
         add_placeholder(self.fields['confirma_senha'], 'confirmar senha')
+        self.fields['cnpj'].widget.attrs.update({'class': 'mask-cnpj'})
+        self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
 
     Nome_academia = forms.CharField(
         error_messages={'requered': 'Escreva o nome da sua academia'},
@@ -113,7 +116,8 @@ class RegisterForm(forms.ModelForm):
         #     'um numero e um caracter especial.'
         #     'E precisa ter o minimo 8 caracteres'
         # ),
-        label='Confrimar senha:'
+        label='Confirmar senha:'
+
     )
 
     def clean(self):
@@ -137,4 +141,3 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError({
                 'E_mail': 'email invalido'
             })
-
