@@ -47,20 +47,19 @@ body{
 }
 .logo-login{
     display: flex;
-    flex-direction: row;
+
     justify-content: center;
-    align-items: center;
 }
 .img{
-    position: relative;
+    
     width: 10rem;
     height: 10rem;
-    
      
 }
-/* .form{
-    /* margin: 0 auto; 
-} */
+.form{
+     margin: 0 auto; 
+} 
+
 .form-content{
     /* display: flex;
     flex-direction: column;
@@ -91,10 +90,15 @@ body{
 .form-content input:hover{
     border: 1px solid #AEC7FF;
 }
+
+
+
 .form-button{
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
-.form-content button{
+.form-button button{
+
     font-size: 1.1rem;
     border: none;
     background-color: #1583c1;
@@ -104,7 +108,9 @@ body{
     border-radius: .7rem;
     transition: all 300ms ease-in-out;
 }
-.form-content button:hover{
+
+.form-button button:hover{
+
     filter: drop-shadow(13px 4px 6px rgba(0, 0, 0, 0.25));
 }
 .form-content-grid{
@@ -137,12 +143,14 @@ body{
     background: #80E377;
     color: #FFFF;
 }
-.button-login{
-    position: relative;
-    left: 1rem;
-}
+
+
+
 
 .content-login{
     position: relative;
     left: -3rem;
     margin-bottom: 5rem;
+
+}
+
