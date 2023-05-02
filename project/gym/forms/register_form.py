@@ -4,6 +4,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from gym.models import Academia
 
+from .utils import add_placeholder
+
 
 def strong_password(senha):
     regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z](?=.*[0-9]).{8,}$)')
@@ -18,15 +20,6 @@ def strong_password(senha):
              ),
             code='Invalid'
         )
-
-
-def add_attr(field, attr_name, attr_new_val):
-    existing = field.widget.attrs.get(attr_name, '')
-    field.widget.attrs[attr_name] = f'{existing} {attr_new_val}'.strip()
-
-
-def add_placeholder(field, placeholder_val):
-    add_attr(field, 'placeholder', placeholder_val)
 
 
 class RegisterForm(forms.ModelForm):
@@ -55,7 +48,6 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['confirma_senha'], 'confirmar senha')
         self.fields['cnpj'].widget.attrs.update({'class': 'mask-cnpj'})
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
-
 
     Nome_academia = forms.CharField(
         error_messages={'requered': 'Escreva o nome da sua academia'},
@@ -142,4 +134,3 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError({
                 'E_mail': 'email invalido'
             })
-
