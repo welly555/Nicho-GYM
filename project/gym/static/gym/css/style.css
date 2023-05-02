@@ -151,10 +151,10 @@ body{
 }
 
 .home-page {
-    /*background-image: url("/static/gym/img/homeBackground.jpg");
+    /* background-image: url("/static/gym/img/image01.avif");
     background-size: cover;
-    background-position: top center;*/
-    background: rgba(0, 0, 0, 0.85);
+    background-position: top center; */
+    background: #202A31; 
 }
 
 .cabeçalho {
@@ -218,15 +218,123 @@ body{
     color: #FFFF;
 }
 
+#link-topo {
+    text-decoration: none;
+    color: black;
+    background-color: #FFFF;
+    padding: 10px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
 .home-corpo h2{
+    font-size: 50px;
     color: #FFFF;
     text-align: center;
     margin-top: 50px;
 }
 
 .home-corpo p {
+    font-size: 20px;
     color: #FFFF;
     text-align: center;
     margin-top: 20px;
 }
 
+#image02 img {
+    display: block;
+    width: 600px;
+    height: 450px;
+    margin: 50px auto;
+}
+
+.container-home-body {
+    display: flex;
+    align-items: center;
+}
+
+.home-corpo h3{
+    color: #FFFF;
+}
+
+.h3_left {
+    font-size: 30px;
+    text-align: left;
+    width: 20rem;
+    margin: 50px 0 0 10rem;
+}
+
+#image03 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 10rem;
+}
+
+#image04 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 6rem;
+}
+
+.h3_right {
+    font-size: 30px;
+    text-align: left;
+    width: 20rem;
+    margin: 50px 0 0 10rem;
+}
+
+#image05 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 10rem;
+}
+
+footer {
+    height: 10rem;
+    margin-top: 150px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.container-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-footer p {
+    color: #FFFF;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.fa-github {
+    color: #FFFF;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.fa-phone {
+    color: #FFFF;
+    font-size: 30px;
+    margin-top: 10px;
+}
+.fa-envelope {
+    color: #FFFF;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+#footer-link-github {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #FFFF;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.footer-container-github i, p{
+    margin-top: 20px;
+}
