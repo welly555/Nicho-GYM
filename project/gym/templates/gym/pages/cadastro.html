@@ -15,7 +15,7 @@
     <div class="container-form-cadastro"> 
         <div class="form">
             <div class="logo">
-                <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+                <a href="http://127.0.0.1:8000/"><img class='img' src="{% static 'gym/img/logoAcad 1.png' %}" alt=""></a>
             </div>
             <form class="main-form" action="{% url 'gym:create' %}" method="POST">
                 {% csrf_token %}

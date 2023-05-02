@@ -46,7 +46,7 @@ class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
-        add_placeholder(self.fields['Dono'], 'Ex.: João Almaida')
+        add_placeholder(self.fields['Dono'], 'Ex.: João Almeida')
         add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')

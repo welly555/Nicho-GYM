@@ -57,7 +57,7 @@ def login_create(request):
 
 
 def cadastro(request):
-    messages.success(request, 'usuario cadastrado')
+    # messages.success(request, 'usuario cadastrado')
     register_from_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_from_data)
 

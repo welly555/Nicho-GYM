@@ -1,3 +1,27 @@
 {% include 'gym/partials/head.html' %}
 {% include 'gym/partials/message.html' %}
-<h3>Aqui vai ser a tela inicial 👤</h3>
+{% load static %}
+
+
+<body class="home-page">
+    <header class="cabeçalho">
+        <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+        <h2 id="nicho-gym">
+            <a href="http://127.0.0.1:8000/">NICHO-GYM</a>
+        </h2>
+        <div id="home-login">
+            <a href="http://127.0.0.1:8000/login/">Login</a>
+        </div>
+        <div id="home-cadastro">
+            <a href="http://127.0.0.1:8000/cadastro/">Cadastre-se</a>
+        </div>
+    </header>
+    <div class="home-corpo">
+        <h2>Tenha controle da sua academia</h2>
+        <p>Um pacote completo de funções essenciais que possibilitará 
+            uma visão mais sistêmica de seu empreendimento.</p>
+        
+        <img src="static/gym/img/images01.png" alt="">
+    </div>
+    <footer class="home-footer"></footer>
+</body>
