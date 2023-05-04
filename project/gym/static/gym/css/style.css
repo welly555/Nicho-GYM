@@ -192,6 +192,7 @@ body{
     font-family: sans-serif;
     color: #FFFF;
     background: #29363F;
+    border-radius: 6px;
 }
 
 #home-cadastro button{
@@ -206,6 +207,7 @@ body{
     font-family: sans-serif;
     color: #FFFF;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .home-corpo h2{
