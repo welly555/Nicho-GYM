@@ -161,6 +161,7 @@ body{
     height: 4rem;
     background: #29363F;
     display: flex;
+    align-items: center;
 }
 
 .cabeçalho img {
@@ -178,7 +179,7 @@ body{
     font-family: sans-serif;
 }
 
-#home-login {
+#home-login button{
     margin: auto 0;
     margin-left: 57rem;
     width: 5rem;
@@ -186,46 +187,25 @@ body{
     border: solid;
     border-color: #4682B4;
     align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#home-login a {
+    cursor: pointer;
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
+    background: #29363F;
 }
 
-#home-cadastro {
+#home-cadastro button{
     margin: auto 0;
     margin-left: 1rem;
     width: 7rem;
     height: 2.2rem;
     background-color: #00BFFF;
     border-color: #4682B4;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-}
-
-#home-cadastro a {
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
-}
-
-#link-topo {
-    text-decoration: none;
-    color: black;
-    background-color: #FFFF;
-    padding: 10px;
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
+    cursor: pointer;
 }
 
 .home-corpo h2{
