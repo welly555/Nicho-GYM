@@ -1,20 +1,30 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import user_passes_test
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.hashers import check_password, make_password
-
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, Recuperar_senha, RegisterForm
 from .models import Academia
 
 
 def home(request):
     return render(request, 'gym/pages/home.html')
 
+
+def check_email(email):
+    check = Academia.objects.filter(E_mail=email).exists()
+    if check:
+        return True
+    return False
+
+
+def atualizar_senha(email, senha):
+    user = Academia.objects.filter(E_mail=email).first()
+    user.senha = senha
+    user.save()
 
 
 def logar(email, senha):
@@ -55,12 +65,10 @@ def login_create(request):
         return redirect('gym:login')
 
 
-
 def cadastro(request):
     messages.success(request, 'usuario cadastrado')
     register_from_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_from_data)
-
 
     return render(request, 'gym/pages/cadastro.html', {
         'form': form,
@@ -87,3 +95,34 @@ def cadastro_create(request):
 
     return redirect('gym:cadastro')
 
+
+def recuperar_senha(request):
+    register_from_data = request.session.get('register_form_data', None)
+    form = Recuperar_senha(register_from_data)
+    return render(request, 'gym/pages/recuperar_senha.html', {
+        'form': form
+    })
+
+
+def recuperar_senha_create(request):
+    if not request.POST:
+        raise Http404()
+
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = Recuperar_senha(POST)
+    if form.is_valid():
+        valido = check_email(
+            email=request.POST.get('E_mail')
+        )
+        if valido:
+            atualizar_senha(
+                email=request.POST.get('E_mail'),
+                senha=request.POST.get('Senha')
+            )
+            messages.success(request, 'Senha atualizada com sucesso')
+            return redirect('gym:login')
+        else:
+            messages.error(request, 'Usuario não encontrado')
+            return redirect('gym:recuperar_senha')
+    return redirect('gym:recuperar_senha')

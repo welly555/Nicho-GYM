@@ -10,5 +10,8 @@ urlpatterns = [
     path('cadastro/create/', views.cadastro_create, name='create'),
     path('login/', views.login_view, name='login'),
     path('login/create', views.login_create, name='login_create'),
+    path('login/reset_senha', views.recuperar_senha, name='recuperar_senha'),
+    path('login/reset_senha_create', views.recuperar_senha_create,
+         name='recuperar_senha_create'),
 
 ]
