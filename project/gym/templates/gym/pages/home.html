@@ -1,3 +1,64 @@
 {% include 'gym/partials/head.html' %}
 {% include 'gym/partials/message.html' %}
-<h3>Aqui vai ser a tela inicial 👤</h3>
+{% load static %}
+
+
+<body class="home-page">
+    <header class="cabeçalho">
+        <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+        <h2 id="nicho-gym">
+            <a href="http://127.0.0.1:8000/">NICHO-GYM</a>
+        </h2>
+        <div id="home-login">
+            <a href="http://127.0.0.1:8000/login/">Login</a>
+        </div>
+        <div id="home-cadastro">
+            <a href="http://127.0.0.1:8000/cadastro/">Cadastre-se</a>
+        </div>
+    </header>
+
+    <a id="link-topo" href="#">&#9650;</a>
+
+    <div class="home-corpo">
+        <h2>Tenha controle da sua academia</h2>
+        <p>Um pacote completo de funções essenciais que possibilitará uma visão mais sistêmica de seu empreendimento.</p>
+        <div id="image02">
+            <img src="static/gym/img/image10.jpg" alt="">
+        </div>
+
+        <div class="container-home-body">
+            <h3 class="h3_left">O Nicho GYM é um aplicativo web de gerenciamento de academias, voltado para todos os tipos de academias.</h3>
+            <div id="image03">
+                <img src="static/gym/img/image09.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="container-home-body">
+            <div id="image04">
+                <img src="static/gym/img/image12.jpg" alt="">
+            </div>
+            <h3 class="h3_right">Possibilita ao empreendedor ter o controle administrativo e financeiro da sua academia.</h3>
+        </div>
+
+        <div class="container-home-body">
+            <h3 class="h3_left">Proporcionar um gerenciamento mais preciso aos acessos dos alunos e profissionais, treinos e muito mais.</h3>
+            <div id="image05">
+                <img src="static/gym/img/image11.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container-footer" id="footer-container-github">
+            <a href="https://github.com/welly555/Nicho-GYM"><i class="fa-brands fa-github"></i></a>
+            <!-- <a id="footer-link-github" href="https://github.com/welly555/Nicho-GYM">NICHO-GYM</a> -->
+        </div>
+        <div class="container-footer" id="footer-container-email">
+            <i class="fa-regular fa-envelope"></i>
+            <p>@gmail.com</p>
+        </div>
+        <div class="container-footer" id="footer-container-phone">
+            <i class="fa-solid fa-phone"></i>
+            <p>(99) 99999-9999</p>
+        </div>
+    </footer>
+</body>
