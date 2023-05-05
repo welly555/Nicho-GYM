@@ -320,6 +320,157 @@ footer {
     margin-top: 10px;
 }
 
+
+.home-page {
+    /* background-image: url("/static/gym/img/image01.avif");
+    background-size: cover;
+    background-position: top center; */
+    background: #202A31; 
+}
+
+.cabeçalho {
+    height: 4rem;
+    background: #29363F;
+    display: flex;
+    align-items: center;
+}
+
+.cabeçalho img {
+    width: 5rem;
+    height: 5rem;
+}
+
+#nicho-gym {
+    margin: auto 0;
+}
+
+#nicho-gym a {
+    color: #CAE1FF;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+#home-login button{
+    margin: auto 0;
+    margin-left: 57rem;
+    width: 5rem;
+    height: 2.2rem;
+    border: solid;
+    border-color: #4682B4;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #FFFF;
+    background: #29363F;
+    border-radius: 6px;
+}
+
+
+#home-cadastro button{
+    margin: auto 0;
+    margin-left: 1rem;
+    width: 7rem;
+    height: 2.2rem;
+    background-color: #00BFFF;
+    border-color: #4682B4;
+    justify-content: center;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #FFFF;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.home-corpo h2{
+    font-size: 50px;
+    color: #FFFF;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.home-corpo p {
+    font-size: 20px;
+    color: #FFFF;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#image02 img {
+    display: block;
+    width: 600px;
+    height: 450px;
+    margin: 50px auto;
+}
+
+.container-home-body {
+    display: flex;
+    align-items: center;
+}
+
+.home-corpo h3{
+    color: #FFFF;
+}
+
+.h3_left {
+    font-size: 30px;
+    text-align: left;
+    width: 20rem;
+    margin: 50px 0 0 10rem;
+}
+
+#image03 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 10rem;
+}
+
+#image04 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 6rem;
+}
+
+.h3_right {
+    font-size: 30px;
+    text-align: left;
+    width: 20rem;
+    margin: 50px 0 0 10rem;
+}
+
+#image05 img {
+    width: 600px;
+    height: 450px;
+    margin: 50px 0 0 10rem;
+}
+
+footer {
+    height: 10rem;
+    margin-top: 150px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.container-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-footer p {
+    color: #FFFF;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.fa-github {
+    color: #FFFF;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+
 .fa-phone {
     color: #FFFF;
     font-size: 30px;
@@ -342,8 +493,12 @@ footer {
 .footer-container-github i, p{
     margin-top: 20px;
 
+}
+
+
 .links{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     color: #FFFF;
+
