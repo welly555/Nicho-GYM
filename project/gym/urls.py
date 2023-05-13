@@ -13,5 +13,7 @@ urlpatterns = [
     path('login/reset_senha', views.recuperar_senha, name='recuperar_senha'),
     path('login/reset_senha_create', views.recuperar_senha_create,
          name='recuperar_senha_create'),
+    path('email/', views.envia_email, name='envia_email'),
+    path('login/senha', views.senha, name='senha')
 
 ]
