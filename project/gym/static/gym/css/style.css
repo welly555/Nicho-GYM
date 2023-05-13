@@ -341,9 +341,10 @@ footer {
 
 .footer-container-github i, p{
     margin-top: 20px;
-
-.links{
+}
+.links {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     color: #FFFF;
+}
