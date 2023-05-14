@@ -10,7 +10,9 @@
 <body>
     <h1 class="titulo">Recuperação de senha {{nome}}</h1>
 
-    <a href="http://127.0.0.1:8000/login/senha">link</a>
+    <a href="{{ protocol }}://{{ domain }}{% url 'gym:senha' uid64=uid  %}">
+        {{ protocol }}://{{ domain }}{% url 'gym:senha' uid64=uid  %}
+    </a>
 </body>
 
 
