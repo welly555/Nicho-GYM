@@ -14,7 +14,9 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+
 from .forms import LoginForm, Recuperar_senha, RegisterForm, Valid_Email
+
 from .models import Academia
 
 
@@ -106,8 +108,10 @@ def cadastro_create(request):
 
 def recuperar_senha(request):
     register_from_data = request.session.get('register_form_data', None)
+
     form = Valid_Email(register_from_data)
     return render(request, 'gym/pages/valid_email.html', {
+
         'form': form
     })
 
@@ -118,12 +122,15 @@ def recuperar_senha_create(request):
 
     POST = request.POST
     request.session['register_form_data'] = POST
+
     form = Valid_Email(POST)
+
     if form.is_valid():
         valido = check_email(
             email=request.POST.get('E_mail')
         )
         if valido:
+
             user = Academia.objects.filter(
                 E_mail=request.POST.get('E_mail')).first()
             # token_genetator = PasswordResetTokenGenerator()
@@ -146,11 +153,13 @@ def recuperar_senha_create(request):
             email.attach_alternative(html_content, 'text/html')
             email.send()
 
+
             return redirect('gym:login')
         else:
             messages.error(request, 'Usuario não encontrado')
             return redirect('gym:recuperar_senha')
     return redirect('gym:recuperar_senha')
+
 
 
 def senha(request, uid64):
@@ -191,3 +200,4 @@ def envia_email(request,):
     email.attach_alternative(html_content, 'text/html')
     email.send()
     return HttpResponse('OLá')
+

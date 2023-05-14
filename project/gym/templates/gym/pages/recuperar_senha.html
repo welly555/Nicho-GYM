@@ -18,7 +18,9 @@
                 <img class='img' src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
             </div>
         </div>
+
         <form class="main-form-login" action="{% url 'gym:senha_create' uid64=uid %}" method="POST">
+
             {% csrf_token %}
             <div class="form-content content-login form-content-grid">
                 {% for field in form %}
@@ -46,7 +48,9 @@
             <div class="">
                 <div class="form-grup form-button button-login">
 
+
                     <button type="submit">Confirmar</button>
+
                 </div>
             </div>
             
@@ -55,6 +59,9 @@
     </div>
 </div>
 
+
 </html>
+
+
 
 
