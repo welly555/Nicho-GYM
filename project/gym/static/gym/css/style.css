@@ -154,10 +154,8 @@ body{
 }
 
 
+
 .home-page {
-    /* background-image: url("/static/gym/img/image01.avif");
-    background-size: cover;
-    background-position: top center; */
     background: #202A31; 
 }
 
@@ -165,6 +163,7 @@ body{
     height: 4rem;
     background: #29363F;
     display: flex;
+    align-items: center;
 }
 
 .cabeçalho img {
@@ -182,7 +181,9 @@ body{
     font-family: sans-serif;
 }
 
-#home-login {
+
+
+#home-login button{
     margin: auto 0;
     margin-left: 57rem;
     width: 5rem;
@@ -190,46 +191,27 @@ body{
     border: solid;
     border-color: #4682B4;
     align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#home-login a {
+    cursor: pointer;
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
+    background: #29363F;
+    border-radius: 6px;
 }
 
-#home-cadastro {
+#home-cadastro button{
     margin: auto 0;
     margin-left: 1rem;
     width: 7rem;
     height: 2.2rem;
     background-color: #00BFFF;
     border-color: #4682B4;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-}
-
-#home-cadastro a {
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
-}
-
-#link-topo {
-    text-decoration: none;
-    color: black;
-    background-color: #FFFF;
-    padding: 10px;
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 .home-corpo h2{
@@ -320,6 +302,7 @@ footer {
     margin-top: 10px;
 }
 
+
 .fa-phone {
     color: #FFFF;
     font-size: 30px;
@@ -342,8 +325,21 @@ footer {
 .footer-container-github i, p{
     margin-top: 20px;
 
+}
+
+
 .links{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     color: #FFFF;
+}
+
+.container-aluno{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

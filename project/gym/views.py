@@ -7,7 +7,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from .forms import LoginForm, Recuperar_senha, RegisterForm
-from .models import Academia
+from .forms.aluno import AlunoRegister
+from .models import Academia, Aluno
 
 
 def home(request):
@@ -66,9 +67,8 @@ def login_create(request):
 
 
 def cadastro(request):
-    messages.success(request, 'usuario cadastrado')
-    register_from_data = request.session.get('register_form_data', None)
-    form = RegisterForm(register_from_data)
+    register_form_data = request.session.get('register_form_data', None)
+    form = RegisterForm(register_form_data)
 
     return render(request, 'gym/pages/cadastro.html', {
         'form': form,
@@ -86,7 +86,6 @@ def cadastro_create(request):
     if form.is_valid():
 
         form.save(commit=False)
-        form.set_password()
         form.save()
         messages.success(request, 'usuario cadastrado')
 
@@ -97,8 +96,8 @@ def cadastro_create(request):
 
 
 def recuperar_senha(request):
-    register_from_data = request.session.get('register_form_data', None)
-    form = Recuperar_senha(register_from_data)
+    register_form_data = request.session.get('register_form_data', None)
+    form = Recuperar_senha(register_form_data)
     return render(request, 'gym/pages/recuperar_senha.html', {
         'form': form
     })
@@ -126,3 +125,36 @@ def recuperar_senha_create(request):
             messages.error(request, 'Usuario não encontrado')
             return redirect('gym:recuperar_senha')
     return redirect('gym:recuperar_senha')
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def cadastro_aluno(request):
+    register_form_data = request.session.get('register_form_data', None)
+    form = AlunoRegister(register_form_data)
+
+    return render(request, 'gym/pages/aluno.html', {
+        'form' : form,
+    })
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+# def cadastro_aluno_create(request, id):
+def cadastro_aluno_create(request):
+    # aluno = Aluno.objects.filter(
+    #     academia=request.academia,
+    #     pk=id,
+    # )
+    
+    
+    if not request.POST:
+        raise Http404()
+    
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = AlunoRegister(POST)
+
+    if form.is_valid():
+        form.save()
+
+    del (request.session['register_form_data'])
+
+    return redirect('gym:cadastro_aluno')
