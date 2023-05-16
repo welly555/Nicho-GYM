@@ -18,8 +18,11 @@ class GymURLSTest(TestCase):
     def test_gym_recuperar_senha_url_acept(self):
         url = reverse('gym:recuperar_senha')
         self.assertEqual(url, '/login/reset_senha')
+
     
     def test_gym_aluno_url_acept(self):
         url = reverse('gym:cadastro_aluno')
         self.assertEqual(url, '/aluno/')
     
+
+
