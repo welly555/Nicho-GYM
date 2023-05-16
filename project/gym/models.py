@@ -26,7 +26,7 @@ class Aluno(models.Model):
     Valor_pagamento = models.FloatField()
     Situacao = models.BooleanField(default=True)
     Data_inscricao = models.DateField(auto_now_add=True)
-    telefone = models.IntegerField(default=None)
+    telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
         Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 

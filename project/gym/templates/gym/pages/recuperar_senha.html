@@ -19,7 +19,11 @@
             </div>
         </div>
 
+        <form class="main-form-login" action="{% url 'gym:recuperar_senha_create' %}" method="POST">
+
+
         <form class="main-form-login" action="{% url 'gym:senha_create' uid64=uid %}" method="POST">
+
 
             {% csrf_token %}
             <div class="form-content content-login form-content-grid">
@@ -49,7 +53,11 @@
                 <div class="form-grup form-button button-login">
 
 
+                    <button type="submit">login</button>
+
+
                     <button type="submit">Confirmar</button>
+
 
                 </div>
             </div>
@@ -61,6 +69,10 @@
 
 
 </html>
+
+
+</html>
+
 
 
 
