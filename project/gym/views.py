@@ -98,9 +98,11 @@ def cadastro_create(request):
         form.save(commit=False)
 
         form.save()
+
         messages.success(request, 'usuario cadastrado')
 
         del (request.session['register_form_data'])
+
         return redirect('gym:login')
 
     return redirect('gym:cadastro')
