@@ -154,6 +154,7 @@ body{
 }
 
 
+
 .home-page {
     /* background-image: url("/static/gym/img/image01.avif");
     background-size: cover;
@@ -496,9 +497,12 @@ footer {
 }
 
 
+
 .links{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     color: #FFFF;
+
+}
 

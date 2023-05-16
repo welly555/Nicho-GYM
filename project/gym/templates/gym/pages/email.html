@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <style>
+        .titulo{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="titulo">Recuperação de senha {{nome}}</h1>
+
+    <a href="{{ protocol }}://{{ domain }}{% url 'gym:senha' uid64=uid  %}">
+        {{ protocol }}://{{ domain }}{% url 'gym:senha' uid64=uid  %}
+    </a>
+</body>
+
+
+</html>
