@@ -3,14 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.hashers import check_password, make_password
-
-from django.http import Http404
-
 from django.contrib.auth.tokens import (PasswordResetTokenGenerator,
                                         default_token_generator)
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.http import BadHeaderError, Http404, HttpResponse
-
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -18,16 +14,9 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-
 from .forms import LoginForm, Recuperar_senha, RegisterForm, Valid_Email
-
-
-from .forms import LoginForm, Recuperar_senha, RegisterForm
 from .forms.aluno import AlunoRegister
 from .models import Academia, Aluno
-
-from .models import Academia
-
 
 
 def home(request):
@@ -94,7 +83,6 @@ def cadastro(request):
     register_from_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_from_data)
 
-
     return render(request, 'gym/pages/cadastro.html', {
         'form': form,
     })
@@ -111,9 +99,6 @@ def cadastro_create(request):
     if form.is_valid():
 
         form.save(commit=False)
-
-
-
 
         form.save()
 
@@ -132,12 +117,6 @@ def recuperar_senha(request):
     form = Recuperar_senha(register_form_data)
     return render(request, 'gym/pages/recuperar_senha.html', {
 
-    register_from_data = request.session.get('register_form_data', None)
-
-    form = Valid_Email(register_from_data)
-    return render(request, 'gym/pages/valid_email.html', {
-
-
         'form': form
     })
 
@@ -151,9 +130,7 @@ def recuperar_senha_create(request):
 
     form = Recuperar_senha(POST)
 
-
     form = Valid_Email(POST)
-
 
     if form.is_valid():
         valido = check_email(
@@ -166,7 +143,6 @@ def recuperar_senha_create(request):
                 senha=request.POST.get('Senha')
             )
             messages.success(request, 'Senha atualizada com sucesso')
-
 
             user = Academia.objects.filter(
                 E_mail=request.POST.get('E_mail')).first()
@@ -190,14 +166,11 @@ def recuperar_senha_create(request):
             email.attach_alternative(html_content, 'text/html')
             email.send()
 
-
-
             return redirect('gym:login')
         else:
             messages.error(request, 'Usuario não encontrado')
             return redirect('gym:recuperar_senha')
     return redirect('gym:recuperar_senha')
-
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
@@ -206,8 +179,9 @@ def cadastro_aluno(request):
     form = AlunoRegister(register_form_data)
 
     return render(request, 'gym/pages/aluno.html', {
-        'form' : form,
+        'form': form,
     })
+
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 # def cadastro_aluno_create(request, id):
@@ -216,11 +190,10 @@ def cadastro_aluno_create(request):
     #     academia=request.academia,
     #     pk=id,
     # )
-    
-    
+
     if not request.POST:
         raise Http404()
-    
+
     POST = request.POST
     request.session['register_form_data'] = POST
     form = AlunoRegister(POST)
@@ -271,5 +244,3 @@ def envia_email(request,):
     email.attach_alternative(html_content, 'text/html')
     email.send()
     return HttpResponse('OLá')
-
-

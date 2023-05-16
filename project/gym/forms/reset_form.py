@@ -25,21 +25,9 @@ class Recuperar_senha(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
         add_placeholder(self.fields['Senha'], 'Digite sua nova senha')
         add_placeholder(self.fields['Confirmar_Senha'],
                         'Confirme a nova senha')
-    E_mail = forms.EmailField(
-        error_messages={'required': 'E-mail necessario'},
-        required=True,
-        label='E-mail:',
-    )
-
-
-        add_placeholder(self.fields['Senha'], 'Digite sua nova senha')
-        add_placeholder(self.fields['Confirmar_Senha'],
-                        'Confirme a nova senha')
-
 
     Senha = forms.CharField(
         widget=forms.PasswordInput(),
