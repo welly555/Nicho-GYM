@@ -244,3 +244,6 @@ def envia_email(request,):
     email.attach_alternative(html_content, 'text/html')
     email.send()
     return HttpResponse('OLá')
+
+def dashboard(request):
+    return render(request,'gym/pages/dashboard.html')
