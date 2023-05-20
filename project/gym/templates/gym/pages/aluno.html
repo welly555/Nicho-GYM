@@ -1,0 +1,40 @@
+{% include 'gym/partials/head.html' %}
+{% load static%}
+
+<div class="container-aluno">
+    <div class="container-form-cadastro">
+        <div class="form">
+            <div class="logo">
+                <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+            </div>
+            <form action="{% url 'gym:aluno_cadastrado' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-content form-content-grid">
+                    {% for field in form %}
+                        <div class="form-grup">
+                            <label for=" field.id_for_label">{{ field.label }}</label>
+                            {{field}}
+
+                            {% if field.help_text %}
+                                <p class="help-text">{{ field.help_text }}</p>
+                            {% endif %}
+
+                            {{ field.errors }}
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+                <div class="">
+                    <div class="form-grup form-button">
+                        <button type="submit">cadastra aluno</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="{% static 'gym/js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'gym/js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'gym/js/mascara.js' %}"></script>
+</div>
