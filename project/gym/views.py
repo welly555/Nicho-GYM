@@ -65,7 +65,7 @@ def login_create(request):
         if valido:
             messages.success(request, 'login efetuado')
 
-            return redirect('gym:home')
+            return redirect('gym:dashboard')
         else:
             messages.error(request, 'credeciais erradas')
             return redirect('gym:login')
