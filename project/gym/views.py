@@ -116,12 +116,11 @@ def cadastro_create(request):
 
 
 def recuperar_senha(request):
+    register_from_data = request.session.get('register_form_data', None)
 
 
-    register_form_data = request.session.get('register_form_data', None)
-    form = Recuperar_senha(register_form_data)
-    return render(request, 'gym/pages/recuperar_senha.html', {
-
+    form = Valid_Email(register_from_data)
+    return render(request, 'gym/pages/valid_email.html', {
 
         'form': form
     })
@@ -135,8 +134,6 @@ def recuperar_senha_create(request):
     request.session['register_form_data'] = POST
 
 
-    form = Recuperar_senha(POST)
-
     form = Valid_Email(POST)
 
 
@@ -145,12 +142,6 @@ def recuperar_senha_create(request):
             email=request.POST.get('E_mail')
         )
         if valido:
-
-            atualizar_senha(
-                email=request.POST.get('E_mail'),
-                senha=request.POST.get('Senha')
-            )
-            messages.success(request, 'Senha atualizada com sucesso')
 
 
             user = Academia.objects.filter(
