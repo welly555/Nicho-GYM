@@ -201,7 +201,11 @@ def cadastro_aluno_create(request):
     form = AlunoRegister(POST)
 
     if form.is_valid():
+        messages.success(request, 'aluno adicionado')
         form.save()
+    else:
+        messages.error(request, 'aluno não adicionado')
+        return redirect('gym:cadastro_aluno')
 
     del (request.session['register_form_data'])
 
