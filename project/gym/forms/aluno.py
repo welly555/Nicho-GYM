@@ -18,13 +18,15 @@ class AlunoRegister(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
         add_placeholder(self.fields['Nome'], 'Ex.: João')
         add_placeholder(self.fields['sobrenome'], 'Ex.: Almeida')
         add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
         add_placeholder(self.fields['Data_Nascimento'], 'Ex.: 10/10/2010')
         add_placeholder(self.fields['Valor_pagamento'], 'Ex.: 100')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
+        self.fields['Data_Nascimento'].widget.attrs.update({'class': 'mask-date'})
+        self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
+        self.fields['Valor_pagamento'].widget.attrs.update({'class': 'mask-money'})
     
     Nome = forms.CharField(
         label='Nome do aluno:',
@@ -42,7 +44,7 @@ class AlunoRegister(forms.ModelForm):
         label='Data de Nascimento:',
     )
 
-    Valor_pagamento = forms.FloatField(
+    Valor_pagamento = forms.CharField(
         label='Valor do Pagamento:',
     )
 
