@@ -165,7 +165,9 @@ body{
     height: 4rem;
     background: #29363F;
     display: flex;
+
     align-items: center;
+
 }
 
 .cabeçalho img {
@@ -184,7 +186,9 @@ body{
 }
 
 
+
 #home-login button{
+
     margin: auto 0;
     margin-left: 57rem;
     width: 5rem;
@@ -192,6 +196,7 @@ body{
     border: solid;
     border-color: #4682B4;
     align-items: center;
+
     cursor: pointer;
     text-decoration: none;
     font-family: sans-serif;
@@ -205,18 +210,21 @@ body{
 }
 
 #home-cadastro button{
+
     margin: auto 0;
     margin-left: 1rem;
     width: 7rem;
     height: 2.2rem;
     background-color: #4682B4;
     border-color: #4682B4;
+
     justify-content: center;
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
     cursor: pointer;
     border-radius: 6px;
+
 }
 
 #home-cadastro button:hover{   
@@ -309,6 +317,7 @@ footer {
     color: #FFFF;
     font-size: 30px;
     margin-top: 10px;
+
 }
 
 .fa-github:hover {
@@ -368,6 +377,7 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
 
 .menu {
     gap: 1rem;
@@ -472,3 +482,4 @@ body {
 .dashboard_personal{
     background-color: #7062C1;
 }
+

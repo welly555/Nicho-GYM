@@ -25,9 +25,11 @@ class Recuperar_senha(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
         add_placeholder(self.fields['Senha'], 'Digite sua nova senha')
         add_placeholder(self.fields['Confirmar_Senha'],
                         'Confirme a nova senha')
+
 
     Senha = forms.CharField(
         widget=forms.PasswordInput(),
