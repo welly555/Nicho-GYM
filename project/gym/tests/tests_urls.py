@@ -25,6 +25,6 @@ class GymURLSTest(TestCase):
         url = reverse('gym:cadastro_aluno')
         self.assertEqual(url, '/aluno/')
     
-
-
-
+    def test_gym_dashboard_url(self):
+        url = reverse('gym:dashboard')
+        self.assertEqual(url, '/dashboard/')

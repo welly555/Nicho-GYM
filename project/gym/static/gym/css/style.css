@@ -205,6 +205,9 @@ body{
     border-radius: 6px;
 }
 
+#home-login button:hover{   
+    background-color: #00BFFF;
+}
 
 #home-cadastro button{
 
@@ -212,7 +215,7 @@ body{
     margin-left: 1rem;
     width: 7rem;
     height: 2.2rem;
-    background-color: #00BFFF;
+    background-color: #4682B4;
     border-color: #4682B4;
 
     justify-content: center;
@@ -222,6 +225,10 @@ body{
     cursor: pointer;
     border-radius: 6px;
 
+}
+
+#home-cadastro button:hover{   
+    background-color: #00BFFF;
 }
 
 .home-corpo h2{
@@ -284,18 +291,18 @@ body{
     width: 600px;
     height: 450px;
     margin: 50px 0 0 10rem;
+    margin-bottom: 8rem;
 }
 
 footer {
-    height: 10rem;
-    margin-top: 150px;
-    background: rgba(0, 0, 0, 0.25);
+    margin-top: 2rem;
+    height: 8rem;
+    background: #29363F;
 }
 
 .container-footer {
     display: flex;
     align-items: center;
-    margin-top: 15px;
     flex-direction: row;
     justify-content: center;
 }
@@ -311,6 +318,10 @@ footer {
     font-size: 30px;
     margin-top: 10px;
 
+}
+
+.fa-github:hover {
+    color: #1583c1;
 }
 
 
@@ -329,18 +340,33 @@ footer {
     text-decoration: none;
     font-family: sans-serif;
     color: #FFFF;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 2rem;
+    margin-top: 2rem;
 }
 
 .footer-container-github i, p{
-    margin-top: 20px;
+    margin-top: 1rem;
 }
 .links {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     color: #FFFF;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: #FFFF;
+}
+
+.link a {
+    text-decoration: none;
+    color: #FFFF;
+}
+
+.link a:hover {
+    color: #1583c1;
 }
 
 .container-aluno{
@@ -350,5 +376,110 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+
+.menu {
+    gap: 1rem;
+}
+
+.logout {
+    margin-left: 55rem;
+}
+
+/* .dashboard_body {
+    width: 100%;
+    height: 100%;
+    background-image: url("static/gym/img/image09.jpg");
+} */
+
+body {
+    background-image: url("/static/gym/img/image09.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.container-card {
+    width: 100%;
+    height: 27rem;
+}
+
+.linha_01, .linha_02{
+    display: flex;
+    height: 50%;
+    /* background-color: #FFFF; */
+}
+
+.card {
+    display: flex;
+    background-color: red;
+    margin-right: 2rem;
+    width: 20rem;
+    height: 10rem;
+    margin: 0 auto;
+    margin-top: 1.7rem;
+    align-items: center;
+    border-radius: 2rem;
+}
+
+.card img {
+    width: 7rem;
+    height: 7rem;
+    position: relative;
+    margin-left: 3.5rem;
+}
+
+.dashboard_aniversariantes img {
+    position: relative;
+    margin-left: 1rem;
+}
+
+.dashboard_aluno img, .dashboard_risco img {
+    position: relative;
+    margin-left: 6rem;
+}
+
+.card h2 {
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+    font-size: 4rem;
+}
+
+.card p {
+    position: relative;
+    margin-top: 2rem;
+    margin-left: -5rem;
+    font-size: 1.5rem;
+}
+
+.dashboard_aluno p, .dashboard_risco p{
+    position: relative;
+    margin-left: -4.2rem;
+}
+
+.dashboard_aluno{
+    background-color: #60AB5A;
+}
+
+.dashboard_aniversariantes{
+    background-color: #A94C79;
+}
+
+.dashboard_risco{
+    background-color: #648AB7;
+}
+
+.dashboard_pendentes{
+    background-color: #B96262;
+}
+
+.dashboard_avaliacao{
+    background-color: #AA4AAC;
+}
+
+.dashboard_personal{
+    background-color: #7062C1;
 }
 

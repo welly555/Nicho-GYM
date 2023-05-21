@@ -24,7 +24,7 @@ class Aluno(models.Model):
     Data_Nascimento = models.DateField()
     Data_pagamento = models.DateField(auto_now_add=True)
     Valor_pagamento = models.FloatField()
-    Situacao = models.BooleanField(default=True)
+    Situacao = models.BooleanField()
     Data_inscricao = models.DateField(auto_now_add=True)
     telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
