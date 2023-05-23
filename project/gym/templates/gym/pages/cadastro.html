@@ -1,7 +1,7 @@
 {% include 'gym/partials/head.html' %}
 {% load static%}
 
-{% block tittle %}Cadastro{% endblock tittle %}
+
 
 {% if form.errors %}
         <div class="form-gruop">
@@ -17,7 +17,7 @@
     <div class="container-form-cadastro"> 
         <div class="form">
             <div class="logo">
-                <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+                <img src="{% static 'global/img/logoAcad 1.png' %}" alt="">
             </div>
             <form class="main-form" action="{% url 'gym:create' %}" method="POST">
                 {% csrf_token %}
@@ -51,7 +51,7 @@
         
     </div>
 </div>
-<script src="{% static 'gym/js/jquery-3.6.4.min.js' %}"></script>
-<script src="{% static 'gym/js/jquery.mask.min.js' %}"></script>
-<script src="{% static 'gym/js/mascara.js' %}"></script>
+<script src="{% static 'global/js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'global/js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'global/js/mascara.js' %}"></script>
 </html>

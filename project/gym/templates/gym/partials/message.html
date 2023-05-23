@@ -10,6 +10,16 @@
         {% endfor %}
     {% endif %}
 
-<script src="{% static 'gym/js/message.js' %}"></script>
+    <!-- {% if messages %}
+        <ul class="messages">
+            <div class="message {{ message.tags }}">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </div>
+        </ul>
+    {% endif %} -->
+
+<script src="{% static 'global/js/message.js' %}"></script>
 </body>
 </html>

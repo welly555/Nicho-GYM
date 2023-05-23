@@ -49,7 +49,11 @@ def logar(email, senha):
 
 
 def login_view(request):
+    if messages.get_messages(request):
+        messages.success(request, 'Cadastro realizado com sucesso!')
+
     form = LoginForm()
+
     return render(request, 'gym/pages/login.html', {
         'form': form,
         'form_action': reverse('gym:login_create')
@@ -82,10 +86,6 @@ def cadastro(request):
 
     register_form_data = request.session.get('register_form_data', None)
     form = RegisterForm(register_form_data)
-
-    messages.success(request, 'usuario cadastrado')
-    register_from_data = request.session.get('register_form_data', None)
-    form = RegisterForm(register_from_data)
 
     return render(request, 'gym/pages/cadastro.html', {
         'form': form,
