@@ -1,17 +1,16 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
 
 
-class Academia(models.Model):
+class Academia(AbstractUser):
     Nome_academia = models.CharField(max_length=254)
-    Dono = models.CharField(max_length=254)
-    E_mail = models.EmailField(max_length=254)
     cnpj = models.CharField(max_length=18)
     Endereco = models.CharField(max_length=254)
-    senha = models.CharField(max_length=30)
     telefone = models.CharField(max_length=15)
+    password = models.CharField(max_length=30, null=True)
+    username = models.CharField(max_length=255, null=True, unique=True)
 
     def __str__(self):
         return self.Nome_academia
@@ -28,7 +27,7 @@ class Aluno(models.Model):
     Data_inscricao = models.DateField(auto_now_add=True)
     telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
         return self.Nome
@@ -40,7 +39,7 @@ class Personal(models.Model):
     E_mail = models.EmailField(max_length=254)
     telefone = models.IntegerField(default=None)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
         return self.Nome
@@ -50,9 +49,9 @@ class Risco(models.Model):
     Problema = models.CharField(max_length=300)
     Recomendacao = models.CharField(max_length=300)
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
-        Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Aluno, on_delete=models.SET_NULL, null=True, blank=True, default=None)
 
     def __str__(self):
         return self.Problema
@@ -67,9 +66,9 @@ class TipoAvaliacao(models.Model):
 
 class Avaliacao(models.Model):
     academia = models.ForeignKey(
-        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
-        Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
+        Aluno, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     TipoAvaliacao = models.ForeignKey(
         TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
     Data_avaliacao = models.TimeField(auto_now_add=True)

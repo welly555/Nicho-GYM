@@ -27,24 +27,24 @@ class RegisterForm(forms.ModelForm):
         model = Academia
         fields = [
             'Nome_academia',
-            'Dono',
-            'E_mail',
+            'Username',
+            'email',
             'telefone',
             'cnpj',
             'Endereco',
-            'senha',
+            'password',
             'confirma_senha'
         ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
-        add_placeholder(self.fields['Dono'], 'Ex.: João Almaida')
-        add_placeholder(self.fields['E_mail'], 'Ex.: João@.com')
+        add_placeholder(self.fields['Username'], 'Ex.: João Almaida')
+        add_placeholder(self.fields['email'], 'Ex.: João@.com')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
         add_placeholder(self.fields['Endereco'], 'Ex.: Rua sem nome')
-        add_placeholder(self.fields['senha'], 'senha')
+        add_placeholder(self.fields['password'], 'senha')
         add_placeholder(self.fields['confirma_senha'], 'confirmar senha')
         self.fields['cnpj'].widget.attrs.update({'class': 'mask-cnpj'})
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
@@ -55,13 +55,13 @@ class RegisterForm(forms.ModelForm):
         label='Nome da academia:',
     )
 
-    Dono = forms.CharField(
+    Username = forms.CharField(
         error_messages={'requered': 'Escreva o nome do(a) proprietario'},
         required=True,
         label='Responsavel:'
     )
 
-    E_mail = forms.EmailField(
+    email = forms.EmailField(
         error_messages={'required': 'E-mail necessario'},
         required=True,
         label='E-mail:',
@@ -84,7 +84,7 @@ class RegisterForm(forms.ModelForm):
         required=True,
         label='Endereço:'
     )
-    senha = forms.CharField(
+    password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(),
         error_messages={
@@ -116,7 +116,7 @@ class RegisterForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
-        password = cleaned_data.get('senha')
+        password = cleaned_data.get('password')
         password_confirmed = cleaned_data.get('confirma_senha')
 
         if password != password_confirmed:
@@ -126,11 +126,11 @@ class RegisterForm(forms.ModelForm):
                 }
             )
 
-        email = cleaned_data.get('E_mail')
+        email = cleaned_data.get('email')
 
-        exists = Academia.objects.filter(E_mail=email).exists()
+        exists = Academia.objects.filter(email=email).exists()
 
         if exists:
             raise ValidationError({
-                'E_mail': 'email invalido'
+                'email': 'email invalido'
             })
