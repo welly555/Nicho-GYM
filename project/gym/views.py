@@ -58,13 +58,16 @@ def login_create(request):
 
     form = LoginForm(request.POST)
     if form.is_valid():
-        valido = logar(
-            email=request.POST.get('E_mail'),
-            senha=request.POST.get('Senha')
+        valido = authenticate(
+            username=request.POST.get('Responsavel'),
+            password=request.POST.get('Senha')
         )
-        if valido:
-            messages.success(request, 'login efetuado')
+        # email=request.POST.get('E_mail'),
+        # senha=request.POST.get('Senha')
 
+        if valido is not None:
+            messages.success(request, 'login efetuado')
+            login(request, valido)
             return redirect('gym:dashboard')
         else:
             messages.error(request, 'credeciais erradas')

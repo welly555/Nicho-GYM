@@ -27,7 +27,7 @@ class RegisterForm(forms.ModelForm):
         model = Academia
         fields = [
             'Nome_academia',
-            'Username',
+            'username',
             'email',
             'telefone',
             'cnpj',
@@ -39,7 +39,7 @@ class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         add_placeholder(self.fields['Nome_academia'], 'Ex.: fitnes gym')
-        add_placeholder(self.fields['Username'], 'Ex.: João Almaida')
+        add_placeholder(self.fields['username'], 'Ex.: João Almaida')
         add_placeholder(self.fields['email'], 'Ex.: João@.com')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         add_placeholder(self.fields['cnpj'], '00.000.00/0000.00')
@@ -55,7 +55,7 @@ class RegisterForm(forms.ModelForm):
         label='Nome da academia:',
     )
 
-    Username = forms.CharField(
+    username = forms.CharField(
         error_messages={'requered': 'Escreva o nome do(a) proprietario'},
         required=True,
         label='Responsavel:'

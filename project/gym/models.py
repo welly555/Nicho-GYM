@@ -9,7 +9,7 @@ class Academia(AbstractUser):
     cnpj = models.CharField(max_length=18)
     Endereco = models.CharField(max_length=254)
     telefone = models.CharField(max_length=15)
-    password = models.CharField(max_length=30, null=True)
+    password = models.CharField(max_length=200, null=True)
     username = models.CharField(max_length=255, null=True, unique=True)
 
     def __str__(self):
