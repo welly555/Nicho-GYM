@@ -20,7 +20,7 @@ urlpatterns = [
     path('login/senha/<uid64>', views.senha, name='senha'),
     path('login/senha/<uid64>/create', views.senha_create, name='senha_create'),
     path('dashboard/', views.dashboard, name='dashboard'),
-
+    path('logout/', views.logout_view, name='logout')
 
 
 ]

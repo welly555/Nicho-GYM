@@ -1,8 +1,7 @@
 from django.conf import Settings, settings
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import (PasswordResetTokenGenerator,
                                         default_token_generator)
 from django.core.mail import EmailMultiAlternatives, send_mail
@@ -62,8 +61,6 @@ def login_create(request):
             username=request.POST.get('Responsavel'),
             password=request.POST.get('Senha')
         )
-        # email=request.POST.get('E_mail'),
-        # senha=request.POST.get('Senha')
 
         if valido is not None:
             messages.success(request, 'login efetuado')
@@ -175,7 +172,6 @@ def cadastro_aluno(request):
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
-# def cadastro_aluno_create(request, id):
 def cadastro_aluno_create(request):
     # aluno = Aluno.objects.filter(
     #     academia=request.academia,
@@ -190,8 +186,11 @@ def cadastro_aluno_create(request):
     form = AlunoRegister(POST)
 
     if form.is_valid():
+
+        aluno = form.save(commit=False)
+        aluno.academia = request.user
+        aluno.save()
         messages.success(request, 'aluno adicionado')
-        form.save()
     else:
         messages.error(request, 'aluno não adicionado')
         return redirect('gym:cadastro_aluno')
@@ -241,5 +240,18 @@ def envia_email(request,):
     return HttpResponse('OLá')
 
 
+@login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard(request):
     return render(request, 'gym/pages/dashboard.html')
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def logout_view(request):
+    if not request.POST:
+        return redirect(reverse('gym:login'))
+
+    if request.POST.get('username') != request.user.username:
+        print('você caiu aqui')
+        return redirect(reverse('gym:login'))
+    logout(request)
+    return redirect(reverse('gym:login'))
