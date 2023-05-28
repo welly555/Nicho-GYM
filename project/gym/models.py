@@ -27,10 +27,10 @@ class Aluno(models.Model):
     Data_inscricao = models.DateField(auto_now_add=True)
     telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
-        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
-        return self.Nome
+        return seCASCADE
 
 
 class Personal(models.Model):
@@ -39,7 +39,7 @@ class Personal(models.Model):
     E_mail = models.EmailField(max_length=254)
     telefone = models.IntegerField(default=None)
     academia = models.ForeignKey(
-        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
         return self.Nome
@@ -49,9 +49,9 @@ class Risco(models.Model):
     Problema = models.CharField(max_length=300)
     Recomendacao = models.CharField(max_length=300)
     academia = models.ForeignKey(
-        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
-        Aluno, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+        Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
 
     def __str__(self):
         return self.Problema
@@ -66,11 +66,11 @@ class TipoAvaliacao(models.Model):
 
 class Avaliacao(models.Model):
     academia = models.ForeignKey(
-        Academia, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     aluno = models.ForeignKey(
-        Aluno, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+        Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
     TipoAvaliacao = models.ForeignKey(
-        TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        TipoAvaliacao, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     Data_avaliacao = models.TimeField(auto_now_add=True)
     peso = models.FloatField()
     altura = models.FloatField()
