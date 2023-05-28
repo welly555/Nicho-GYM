@@ -23,7 +23,7 @@ def home(request):
 
 
 def check_email(email):
-    check = Academia.objects.filter(E_mail=email).exists()
+    check = Academia.objects.filter(email=email).exists()
     if check:
         return True
     return False
@@ -128,16 +128,16 @@ def recuperar_senha_create(request):
 
     if form.is_valid():
         valido = check_email(
-            email=request.POST.get('E_mail')
+            email=request.POST.get('email')
         )
         if valido:
 
             user = Academia.objects.filter(
-                E_mail=request.POST.get('E_mail')).first()
+                email=request.POST.get('email')).first()
             # token_genetator = PasswordResetTokenGenerator()
             # token = token_genetator.make_token(user)
             c = {
-                'email': user.E_mail,
+                'email': user.email,
                 'domain': request.META['HTTP_HOST'],
                 'site_name': 'Nicho GYM',
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -150,7 +150,7 @@ def recuperar_senha_create(request):
                 'gym/pages/email.html', c)
             text_content = strip_tags(html_content)
             email = EmailMultiAlternatives(
-                'alterar senha', text_content, settings.EMAIL_HOST_USER, [request.POST.get('E_mail')])
+                'alterar senha', text_content, settings.EMAIL_HOST_USER, [request.POST.get('email')])
             email.attach_alternative(html_content, 'text/html')
             email.send()
 
@@ -173,10 +173,6 @@ def cadastro_aluno(request):
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def cadastro_aluno_create(request):
-    # aluno = Aluno.objects.filter(
-    #     academia=request.academia,
-    #     pk=id,
-    # )
 
     if not request.POST:
         raise Http404()
@@ -219,7 +215,8 @@ def senha_create(request, uid64):
     if form.is_valid():
         user = Academia.objects.filter(pk=urlsafe_base64_decode(uid64)).first()
 
-        user.senha = request.POST.get('Senha')
+        user.password = request.POST.get('Senha')
+        user.set_password(user.password)
         user.save()
         messages.success(request, 'Senha atualizada com sucesso')
         return redirect('gym:login')
