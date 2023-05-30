@@ -14,12 +14,13 @@ urlpatterns = [
     path('login/reset_senha_create', views.recuperar_senha_create,
          name='recuperar_senha_create'),
 
-    path('aluno/', views.cadastro_aluno, name='cadastro_aluno'),
+    path('dashboard/aluno/', views.cadastro_aluno, name='cadastro_aluno'),
     path('aluno/create', views.cadastro_aluno_create, name='aluno_cadastrado'),
     path('email/', views.envia_email, name='envia_email'),
     path('login/senha/<uid64>', views.senha, name='senha'),
     path('login/senha/<uid64>/create', views.senha_create, name='senha_create'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/dashboard_aluno', views.dashboard_aluno, name='dashboard_aluno'),
 
 
 

@@ -7,20 +7,20 @@
     <header class="cabeçalho">
         <img src="{% static 'global/img/logoAcad 1.png' %}" alt="">
         <h2 id="nicho-gym">
-            <a href="http://127.0.0.1:8000/">NICHO-GYM</a>
+            <a href="{% url 'gym:home' %}">NICHO-GYM</a>
         </h2>
         <div id="home-login">
 
 
 
-            <a href="http://127.0.0.1:8000/login/"><button>Login</button></a>
+            <a href="{% url 'gym:login' %}"><button>Login</button></a>
             
 
             
 
         </div>
         <div id="home-cadastro">
-            <a href="http://127.0.0.1:8000/cadastro/"><button>Cadastre-se</button></a>
+            <a href="{% url 'gym:cadastro' %}"><button>Cadastre-se</button></a>
         </div>
     </header>
 

@@ -1,4 +1,7 @@
 from django import forms
+from datetime import timedelta
+import datetime
+
 from gym.models import Aluno
 
 from .utils import add_placeholder
@@ -12,6 +15,7 @@ class AlunoRegister(forms.ModelForm):
             'E_mail',
             'Data_Nascimento',
             'Valor_pagamento',
+            'Data_pagamento',
             'Situacao',
             'telefone',
         ]
@@ -25,8 +29,10 @@ class AlunoRegister(forms.ModelForm):
         add_placeholder(self.fields['Valor_pagamento'], 'Ex.: 100')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         self.fields['Data_Nascimento'].widget.attrs.update({'class': 'mask-date'})
+        # self.fields['Data_pagamento'].widget.attrs.update({'class': 'mask-date'})
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
         self.fields['Valor_pagamento'].widget.attrs.update({'class': 'mask-money'})
+
     
     Nome = forms.CharField(
         label='Nome do aluno:',
@@ -42,14 +48,23 @@ class AlunoRegister(forms.ModelForm):
 
     Data_Nascimento = forms.DateField(
         label='Data de Nascimento:',
+        input_formats=['%d/%m/%Y'],
     )
 
     Valor_pagamento = forms.CharField(
         label='Valor do Pagamento:',
     )
 
+    Data_pagamento = forms.DateField(
+        label='Data do proximo pargamento:',
+        input_formats=['%d/%m/%Y'],
+        initial= datetime.date.today() + timedelta(days=30),
+        required=None,
+    )
+
     Situacao = forms.BooleanField(
         label='Pagamento Realizado:',
+        required=False,
     )
 
     telefone = forms.CharField(

@@ -307,12 +307,6 @@ footer {
     justify-content: center;
 }
 
-.container-footer p {
-    color: #FFFF;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-
 .fa-github {
     color: #FFFF;
     font-size: 1.5rem;
@@ -477,3 +471,157 @@ footer {
     background-color: #7062C1;
 }
 
+.container_dashboard {
+    height: 100%;
+    width: 100%;
+    
+
+}
+
+.button_voltar{
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    top: 2rem;
+    left: 5rem;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.icone_voltar{
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.pesquisa {
+    position: relative;
+    width: 50rem;
+    height: 7rem;
+    background-color: rgba(197, 196, 196, 0.7);
+    margin: 0rem auto;
+    margin-top: 1.5rem;
+    border-radius: 1rem;
+    
+}
+
+.itens {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0; */
+    height: 2.5rem;
+    width: 45rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.itens button {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.barra_pesquisa{
+    width: 40rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 40rem;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    padding-inline-end: 2rem;
+}
+
+.button_pesquisa {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 5.5rem;
+}
+
+.button_icone_filter{
+    height: 2rem;
+    margin-left: 1rem;
+}
+
+.button_icone_circle{
+    height: 2rem;
+    margin-left: 1rem;
+}
+
+.icone_pesquisa {
+    font-size: 1.3rem;
+}
+
+.icone_filter{
+    font-size: 1.5rem;
+}
+
+.icone_circle_plus{
+    font-size: 1.5rem;
+    color: #00FF00;
+}
+
+.listagem {
+    width: 50rem;
+    height: 50rem;
+    background-color: rgba(197, 196, 196, 0.7);
+    margin: 0.5rem auto;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.listagem li {
+    list-style: none;
+}
+
+.listagem_li_alunos{
+    width: 45rem;
+    height: 2rem;
+    margin: 1rem 0rem 0rem 2.5rem;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 1);
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.green {
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+.red {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.nomes{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+.button_icone_pen{
+    position: relative;
+    margin-left: 34rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+.button_icone_trash{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+}

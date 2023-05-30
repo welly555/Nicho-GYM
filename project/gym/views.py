@@ -1,3 +1,4 @@
+import datetime
 from django.conf import Settings, settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -200,6 +201,9 @@ def cadastro_aluno_create(request):
     request.session['register_form_data'] = POST
     form = AlunoRegister(POST)
 
+    # if form.Data_pagamento == None:
+    #     form.Data_pagamento = datetime.date.today() + datetime.timedelta(days=30)
+    
     if form.is_valid():
         messages.success(request, 'aluno adicionado')
         form.save()
@@ -209,7 +213,7 @@ def cadastro_aluno_create(request):
 
     del (request.session['register_form_data'])
 
-    return redirect('gym:cadastro_aluno')
+    return redirect('gym:dashboard_aluno')
 
 
 def senha(request, uid64):
@@ -231,6 +235,7 @@ def senha_create(request, uid64):
     if form.is_valid():
         user = Academia.objects.filter(pk=urlsafe_base64_decode(uid64)).first()
 
+        
         user.senha = request.POST.get('Senha')
         user.save()
         messages.success(request, 'Senha atualizada com sucesso')
@@ -252,6 +257,21 @@ def envia_email(request,):
     return HttpResponse('OLá')
 
 
+@login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard(request):
     return render(request,'gym/pages/dashboard.html')
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_aluno(request):
+    alunos = Aluno.objects.filter(
+        # Situacao=False
+    )
+    return render(
+        request, 
+        'gym/pages/dashboard_aluno.html',
+        {
+            'alunos' : alunos
+        }
+    )
 

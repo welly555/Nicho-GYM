@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta
 
 # Create your models here.
 
@@ -22,10 +24,10 @@ class Aluno(models.Model):
     sobrenome = models.CharField(max_length=150)
     E_mail = models.EmailField(max_length=254)
     Data_Nascimento = models.DateField()
-    Data_pagamento = models.DateField(auto_now_add=True)
+    Data_pagamento = models.DateField(null=True, default=timezone.now() + timedelta(days=30))
     Valor_pagamento = models.CharField(max_length=10)
     Situacao = models.BooleanField()
-    Data_inscricao = models.DateField(auto_now_add=True)
+    Data_inscricao = models.DateField(default=timezone.now)
     telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
         Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
