@@ -1,17 +1,16 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
 
 
-class Academia(models.Model):
+class Academia(AbstractUser):
     Nome_academia = models.CharField(max_length=254)
-    Dono = models.CharField(max_length=254)
-    E_mail = models.EmailField(max_length=254)
     cnpj = models.CharField(max_length=18)
     Endereco = models.CharField(max_length=254)
-    senha = models.CharField(max_length=30)
     telefone = models.CharField(max_length=15)
+    password = models.CharField(max_length=200, null=True)
+    username = models.CharField(max_length=255, null=True, unique=True)
 
     def __str__(self):
         return self.Nome_academia
@@ -31,7 +30,7 @@ class Aluno(models.Model):
         Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
-        return self.Nome
+        return seCASCADE
 
 
 class Personal(models.Model):
@@ -71,7 +70,7 @@ class Avaliacao(models.Model):
     aluno = models.ForeignKey(
         Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
     TipoAvaliacao = models.ForeignKey(
-        TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        TipoAvaliacao, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     Data_avaliacao = models.TimeField(auto_now_add=True)
     peso = models.FloatField()
     altura = models.FloatField()

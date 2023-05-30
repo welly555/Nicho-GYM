@@ -365,7 +365,8 @@ footer {
     color: #FFFF;
 }
 
-.link a:hover {
+.link a:hover,
+.button_logout:hover {
     color: #1583c1;
 }
 
@@ -483,3 +484,11 @@ body {
     background-color: #7062C1;
 }
 
+/* logout */
+.button_logout{
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #ffff;
+}
