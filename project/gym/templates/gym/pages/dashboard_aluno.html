@@ -5,11 +5,11 @@
 {% include 'gym/partials/header_dashboard.html' %}
 
 <head>
-    <script  type="text/javascript">
+    <!-- <script  type="text/javascript">
     function newPopup(){
         varWindow = window.open ('aluno', 'cadastro_aluno')
         }
-    </script>
+    </script> -->
 </head>
 <body class="body">
     <div class="container_dashboard">
@@ -21,7 +21,7 @@
                     <button class="button_pesquisa"><i class="fa-solid fa-magnifying-glass icone_pesquisa "></i></button>
                 </div>
                 <button class="button_icone_filter"><i class="fa-sharp fa-solid fa-filter icone_filter"></i></button>
-                <a href="javascript:newPopup()"><button class="button_icone_circle"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button></a>
+                <a href="{% url 'gym:cadastro_aluno' %}"><button class="button_icone_circle"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button></a>
                 
             </div>
         </div>

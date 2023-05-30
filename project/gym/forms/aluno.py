@@ -59,7 +59,6 @@ class AlunoRegister(forms.ModelForm):
         label='Data do proximo pargamento:',
         input_formats=['%d/%m/%Y'],
         initial= datetime.date.today() + timedelta(days=30),
-        required=None,
     )
 
     Situacao = forms.BooleanField(
