@@ -20,7 +20,11 @@
         </div>
     </div>
     <div class="logout link">
-        <a href="#">logout</a>
+        <form action="{% url 'gym:logout' %}" method='POST'>
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ request.user.username }}">
+           <button class = "button_logout" type="submit"> logout </button> 
+        </form>
     </div>
         
 </header>

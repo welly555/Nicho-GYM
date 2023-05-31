@@ -625,3 +625,11 @@ footer {
     border: none;
     cursor: pointer;
 }
+
+.button_logout{
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #ffff;
+}

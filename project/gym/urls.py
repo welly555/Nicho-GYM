@@ -21,7 +21,7 @@ urlpatterns = [
     path('login/senha/<uid64>/create', views.senha_create, name='senha_create'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/dashboard_aluno', views.dashboard_aluno, name='dashboard_aluno'),
-
+    path('logout/', views.logout_view, name='logout')
 
 
 ]
