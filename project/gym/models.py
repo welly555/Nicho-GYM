@@ -32,7 +32,7 @@ class Aluno(models.Model):
         Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
 
     def __str__(self):
-        return seCASCADE
+        return self.Nome
 
 
 class Personal(models.Model):

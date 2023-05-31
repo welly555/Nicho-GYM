@@ -247,9 +247,12 @@ def envia_email(request,):
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard(request):
-    quantidade_alunos = Aluno.objects.count()
+    quantidade_alunos = Aluno.objects.filter(
+        academia = request.user
+    ).count()
     quantidade_pendente = Aluno.objects.filter(
-        Situacao=False
+        Situacao=False,
+        academia = request.user
     ).count()
     return render(request,'gym/pages/dashboard.html', context={
         'quantidade_alunos': quantidade_alunos,
@@ -260,7 +263,7 @@ def dashboard(request):
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno(request):
     alunos = Aluno.objects.filter(
-        # Situacao=False
+        academia = request.user
     )
     return render(
         request, 
