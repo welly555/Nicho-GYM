@@ -5,22 +5,22 @@
 
 <body class="home-page">
     <header class="cabeçalho">
-        <img src="{% static 'gym/img/logoAcad 1.png' %}" alt="">
+        <img src="{% static 'global/img/logoAcad 1.png' %}" alt="">
         <h2 id="nicho-gym">
-            <a href="http://127.0.0.1:8000/">NICHO-GYM</a>
+            <a href="{% url 'gym:home' %}">NICHO-GYM</a>
         </h2>
         <div id="home-login">
 
 
 
-            <a href="http://127.0.0.1:8000/login/"><button>Login</button></a>
+            <a href="{% url 'gym:login' %}"><button>Login</button></a>
             
 
             
 
         </div>
         <div id="home-cadastro">
-            <a href="http://127.0.0.1:8000/cadastro/"><button>Cadastre-se</button></a>
+            <a href="{% url 'gym:cadastro' %}"><button>Cadastre-se</button></a>
         </div>
     </header>
 
@@ -30,19 +30,19 @@
         <h2>Tenha controle da sua academia</h2>
         <p>Um pacote completo de funções essenciais que possibilitará uma visão mais sistêmica de seu empreendimento.</p>
         <div id="image02">
-            <img src="static/gym/img/image10.jpg" alt="">
+            <img src="{% static 'global/img/image10.jpg' %}" alt="">
         </div>
 
         <div class="container-home-body">
             <h3 class="h3_left">O Nicho GYM é um aplicativo web de gerenciamento de academias, voltado para todos os tipos de academias.</h3>
             <div id="image03">
-                <img src="static/gym/img/image09.jpg" alt="">
+                <img src="{% static 'global/img/image09.jpg' %}" alt="">
             </div>
         </div>
 
         <div class="container-home-body">
             <div id="image04">
-                <img src="static/gym/img/image12.jpg" alt="">
+                <img src="{% static 'global/img/image12.jpg' %}" alt="">
             </div>
             <h3 class="h3_right">Possibilita ao empreendedor ter o controle administrativo e financeiro da sua academia.</h3>
         </div>
@@ -50,7 +50,7 @@
         <div class="container-home-body">
             <h3 class="h3_left">Proporcionar um gerenciamento mais preciso aos acessos dos alunos e profissionais, treinos e muito mais.</h3>
             <div id="image05">
-                <img src="static/gym/img/image11.jpg" alt="">
+                <img src="{% static 'global/img/image11.jpg' %}" alt="">
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+import datetime
 from django.conf import Settings, settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -44,7 +45,11 @@ def logar(email, senha):
 
 
 def login_view(request):
+    if messages.get_messages(request):
+        messages.success(request, 'Cadastro realizado com sucesso!')
+
     form = LoginForm()
+
     return render(request, 'gym/pages/login.html', {
         'form': form,
         'form_action': reverse('gym:login_create')
@@ -181,6 +186,9 @@ def cadastro_aluno_create(request):
     request.session['register_form_data'] = POST
     form = AlunoRegister(POST)
 
+    # if form.Data_pagamento == None:
+    #     form.Data_pagamento = datetime.date.today() + datetime.timedelta(days=30)
+    
     if form.is_valid():
 
         aluno = form.save(commit=False)
@@ -193,7 +201,7 @@ def cadastro_aluno_create(request):
 
     del (request.session['register_form_data'])
 
-    return redirect('gym:cadastro_aluno')
+    return redirect('gym:dashboard_aluno')
 
 
 def senha(request, uid64):
@@ -239,7 +247,31 @@ def envia_email(request,):
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard(request):
-    return render(request, 'gym/pages/dashboard.html')
+    quantidade_alunos = Aluno.objects.filter(
+        academia = request.user
+    ).count()
+    quantidade_pendente = Aluno.objects.filter(
+        Situacao=False,
+        academia = request.user
+    ).count()
+    return render(request,'gym/pages/dashboard.html', context={
+        'quantidade_alunos': quantidade_alunos,
+        'quantidade_pendente' : quantidade_pendente
+    })
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_aluno(request):
+    alunos = Aluno.objects.filter(
+        academia = request.user
+    )
+    return render(
+        request, 
+        'gym/pages/dashboard_aluno.html',
+        {
+            'alunos' : alunos,
+        }
+    )
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
