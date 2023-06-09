@@ -1,4 +1,5 @@
 import datetime
+
 from django.conf import Settings, settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -45,8 +46,8 @@ def logar(email, senha):
 
 
 def login_view(request):
-    if messages.get_messages(request):
-        messages.success(request, 'Cadastro realizado com sucesso!')
+    # if messages.get_messages(request):
+    #     messages.success(request, 'Cadastro realizado com sucesso!')
 
     form = LoginForm()
 
@@ -188,7 +189,7 @@ def cadastro_aluno_create(request):
 
     # if form.Data_pagamento == None:
     #     form.Data_pagamento = datetime.date.today() + datetime.timedelta(days=30)
-    
+
     if form.is_valid():
 
         aluno = form.save(commit=False)
@@ -248,28 +249,28 @@ def envia_email(request,):
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard(request):
     quantidade_alunos = Aluno.objects.filter(
-        academia = request.user
+        academia=request.user
     ).count()
     quantidade_pendente = Aluno.objects.filter(
         Situacao=False,
-        academia = request.user
+        academia=request.user
     ).count()
-    return render(request,'gym/pages/dashboard.html', context={
+    return render(request, 'gym/pages/dashboard.html', context={
         'quantidade_alunos': quantidade_alunos,
-        'quantidade_pendente' : quantidade_pendente
+        'quantidade_pendente': quantidade_pendente
     })
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno(request):
     alunos = Aluno.objects.filter(
-        academia = request.user
+        academia=request.user
     )
     return render(
-        request, 
+        request,
         'gym/pages/dashboard_aluno.html',
         {
-            'alunos' : alunos,
+            'alunos': alunos,
         }
     )
 
