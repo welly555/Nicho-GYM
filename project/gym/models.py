@@ -1,17 +1,19 @@
-from django.contrib.auth.models import AbstractBaseUser
+from datetime import timedelta
+
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
 
-class Academia(models.Model):
+class Academia(AbstractUser):
     Nome_academia = models.CharField(max_length=254)
-    Dono = models.CharField(max_length=254)
-    E_mail = models.EmailField(max_length=254)
     cnpj = models.CharField(max_length=18)
     Endereco = models.CharField(max_length=254)
-    senha = models.CharField(max_length=30)
     telefone = models.CharField(max_length=15)
+    password = models.CharField(max_length=200, null=True)
+    username = models.CharField(max_length=255, null=True, unique=True)
 
     def __str__(self):
         return self.Nome_academia
@@ -22,10 +24,11 @@ class Aluno(models.Model):
     sobrenome = models.CharField(max_length=150)
     E_mail = models.EmailField(max_length=254)
     Data_Nascimento = models.DateField()
-    Data_pagamento = models.DateField(auto_now_add=True)
-    Valor_pagamento = models.FloatField()
-    Situacao = models.BooleanField(default=True)
-    Data_inscricao = models.DateField(auto_now_add=True)
+    Data_pagamento = models.DateField(
+        null=True, default=timezone.now() + timedelta(days=30))
+    Valor_pagamento = models.CharField(max_length=10)
+    Situacao = models.BooleanField()
+    Data_inscricao = models.DateField(default=timezone.now)
     telefone = models.CharField(max_length=15)
     academia = models.ForeignKey(
         Academia, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
@@ -71,7 +74,7 @@ class Avaliacao(models.Model):
     aluno = models.ForeignKey(
         Aluno, on_delete=models.CASCADE, null=True, blank=True, default=None)
     TipoAvaliacao = models.ForeignKey(
-        TipoAvaliacao, on_delete=models.SET_NULL, null=True, blank=True, default=None)  # noqa: E501
+        TipoAvaliacao, on_delete=models.CASCADE, null=True, blank=True, default=None)  # noqa: E501
     Data_avaliacao = models.TimeField(auto_now_add=True)
     peso = models.FloatField()
     altura = models.FloatField()

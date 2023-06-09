@@ -1,0 +1,30 @@
+{% include 'gym/partials/head.html' %}
+{% include 'gym/partials/message.html' %}
+{% load static %}
+
+<header class="cabeçalho">
+    <img src="{% static 'global/img/logoAcad 1.png' %}" alt="">
+
+    <div class="menu link">
+        <div>
+            <a href="{% url 'gym:dashboard_aluno' %}">Alunos</a>
+        </div>
+        <div>
+            <a href="#">Personais</a>
+        </div>
+        <div>
+            <a href="#">Avaliações</a>
+        </div>
+        <div>
+            <a href="#">Financeiro</a>
+        </div>
+    </div>
+    <div class="logout link">
+        <form action="{% url 'gym:logout' %}" method='POST'>
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ request.user.username }}">
+           <button class = "button_logout" type="submit"> logout </button> 
+        </form>
+    </div>
+        
+</header>
