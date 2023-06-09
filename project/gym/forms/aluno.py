@@ -1,10 +1,11 @@
-from django import forms
-from datetime import timedelta
 import datetime
+from datetime import timedelta
 
+from django import forms
 from gym.models import Aluno
 
 from .utils import add_placeholder
+
 
 class AlunoRegister(forms.ModelForm):
     class Meta:
@@ -28,12 +29,13 @@ class AlunoRegister(forms.ModelForm):
         add_placeholder(self.fields['Data_Nascimento'], 'Ex.: 10/10/2010')
         add_placeholder(self.fields['Valor_pagamento'], 'Ex.: 100')
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
-        self.fields['Data_Nascimento'].widget.attrs.update({'class': 'mask-date'})
+        self.fields['Data_Nascimento'].widget.attrs.update(
+            {'class': 'mask-date'})
         # self.fields['Data_pagamento'].widget.attrs.update({'class': 'mask-date'})
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
-        self.fields['Valor_pagamento'].widget.attrs.update({'class': 'mask-money'})
+        self.fields['Valor_pagamento'].widget.attrs.update(
+            {'class': 'mask-money'})
 
-    
     Nome = forms.CharField(
         label='Nome do aluno:',
     )
@@ -58,7 +60,7 @@ class AlunoRegister(forms.ModelForm):
     Data_pagamento = forms.DateField(
         label='Data do proximo pargamento:',
         input_formats=['%d/%m/%Y'],
-        initial= datetime.date.today() + timedelta(days=30),
+        initial=datetime.date.today() + timedelta(days=30),
     )
 
     Situacao = forms.BooleanField(
