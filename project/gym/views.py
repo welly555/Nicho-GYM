@@ -263,9 +263,23 @@ def dashboard(request):
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno(request):
-    alunos = Aluno.objects.filter(
-        academia=request.user
-    )
+    pesquisa = request.GET.get('input')
+
+    if request.method == 'POST':
+        elemento_id = request.POST.get('delete_aluno')
+        elemento = Aluno.objects.get(pk=elemento_id)
+        elemento.delete()
+        return redirect('gym:dashboard_aluno')
+
+    if pesquisa:
+        alunos = Aluno.objects.filter(
+            academia=request.user,
+            Nome=pesquisa
+        )
+    else:
+        alunos = Aluno.objects.filter(
+            academia=request.user
+        )
     return render(
         request,
         'gym/pages/dashboard_aluno.html',
