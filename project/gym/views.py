@@ -15,7 +15,8 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-from .forms import LoginForm, Recuperar_senha, RegisterForm, Valid_Email
+from .forms import (AvalicaoRegister, LoginForm, Recuperar_senha, RegisterForm,
+                    Valid_Email)
 from .forms.aluno import AlunoRegister
 from .models import Academia, Aluno
 
@@ -285,3 +286,27 @@ def logout_view(request):
         return redirect(reverse('gym:login'))
     logout(request)
     return redirect(reverse('gym:login'))
+
+
+def avaliacao(request):
+    register_form_data = request.session.get('register_form_data', None)
+    form = AvalicaoRegister(register_form_data)
+
+    return render(request, 'gym/pages/avaliacao.html', {
+        'form': form,
+    })
+
+
+def avaliacao_create(request):
+    if not request.POST:
+        raise Http404()
+
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = Recuperar_senha(POST)
+    if form.is_valid():
+        form.save()
+
+        # aqui vai ligar aluno, academia e tipo de avaliaçao
+        messages.success(request, 'avaliacao feita com sucesso')
+        return redirect(render('gym:dashboard_aluno'))

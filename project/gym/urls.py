@@ -22,7 +22,10 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/dashboard_aluno',
          views.dashboard_aluno, name='dashboard_aluno'),
-    path('logout/', views.logout_view, name='logout')
+    path('logout/', views.logout_view, name='logout'),
+    path('dashboard/avaliacao', views.avaliacao, name='avaliacao'),
+    path('dashboard/avaliacao/create',
+         views.avaliacao_create, name='avaliacao_create'),
 
 
 ]
