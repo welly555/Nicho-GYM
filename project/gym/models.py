@@ -78,7 +78,6 @@ class Avaliacao(models.Model):
     Data_avaliacao = models.TimeField(auto_now_add=True)
     peso = models.FloatField()
     altura = models.FloatField()
-    altura = models.FloatField()
     Dobra_tripical = models.FloatField()
     Dobra_abdominal = models.FloatField()
     Dobra_subescapular = models.FloatField()
