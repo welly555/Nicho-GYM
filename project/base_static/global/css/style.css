@@ -633,3 +633,7 @@ footer {
     cursor: pointer;
     color: #ffff;
 }
+
+.form-avaliacao{
+    overflow-y: scroll;
+}
