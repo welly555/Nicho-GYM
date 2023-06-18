@@ -264,12 +264,19 @@ def dashboard(request):
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno(request):
     pesquisa = request.GET.get('input')
+    # elemento_id = request.POST.get('delete_aluno')
+    # editar_id = request.POST.get('editar_aluno')
 
-    if request.method == 'POST':
-        elemento_id = request.POST.get('delete_aluno')
-        elemento = Aluno.objects.get(pk=elemento_id)
-        elemento.delete()
-        return redirect('gym:dashboard_aluno')
+    # if elemento_id:
+    #     elemento = Aluno.objects.get(pk=elemento_id)
+    #     elemento.delete()
+    #     return redirect('gym:dashboard_aluno')
+
+    # if editar_id:
+    #     editar = Aluno.objects.get(pk=editar_id)
+    #     form = AlunoRegister(request.POST, instance=editar)
+    #     if form.is_valid():
+    #         form.save()
 
     if pesquisa:
         alunos = Aluno.objects.filter(
@@ -287,6 +294,45 @@ def dashboard_aluno(request):
             'alunos': alunos,
         }
     )
+
+def dashboard_aluno_edit(request, pk):
+    editar = Aluno.objects.filter(academia=request.user, pk=pk).first()
+    form = AlunoRegister(
+        data=request.POST or None, 
+        instance=editar,
+    )
+
+    if form.is_valid():
+        aluno = form.save(commit=False)
+        aluno.save()
+
+        return redirect(reverse(
+            'gym:dashboard_aluno_edit',
+            args=(pk)
+        ))
+
+    # form =AlunoRegister(request.POST, instance=editar)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect(reverse(
+    #         'gym:dashboard_aluno_edit',
+    #         args=(pk,)
+            
+    #     ))
+    return render(
+        request, 
+        'gym/pages/teste.html',
+        context={
+                'form' : form
+        }
+    )
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_aluno_delete(request, pk):
+    # delete_id = request.POST.get('delete_aluno')
+    delete = Aluno.objects.get(pk=pk)
+    delete.delete()
+    return redirect('gym:dashboard_aluno')
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
