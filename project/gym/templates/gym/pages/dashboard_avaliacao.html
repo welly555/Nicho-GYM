@@ -1,0 +1,71 @@
+{% include 'gym/partials/head.html' %}
+{% include 'gym/partials/message.html' %}
+{% load static%}
+
+{% include 'gym/partials/header_dashboard.html' %}
+
+<head>
+    <!-- <script  type="text/javascript">
+    function newPopup(){
+        varWindow = window.open ('aluno', 'cadastro_aluno')
+        }
+    </script> -->
+</head>
+<body class="body">
+    <div class="container_dashboard">
+        <a href="{% url 'gym:dashboard' %}"><button class="button_voltar"><i class="fa-solid fa-circle-arrow-left icone_voltar"></i></button></a>
+        <div class="pesquisa">
+            <div class="itens">
+                <div class="barra_pesquisa">
+                    <input type="search" name="input" class="input">
+                    <button class="button_pesquisa"><i class="fa-solid fa-magnifying-glass icone_pesquisa "></i></button>
+                </div>
+                <button class="button_icone_filter"><i class="fa-sharp fa-solid fa-filter icone_filter"></i></button>
+            </div>
+        </div>
+
+        <div class="listagem">
+            <h3>Avaliações</h3>
+            <ul>
+                {% for aluno in alunos %}
+                    <li>
+                        {% if aluno.Situacao %}
+                            <div class="listagem_li_avaliacao green">
+                                <a class="nomes" href="{% url 'gym:exibir_avaliacao' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
+                                <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
+                                <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
+                                <form action="{% url 'gym:avaliacao' id=aluno.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="button_icone_circle_avaliacao"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button>
+                                </form>
+                            </div>
+                            
+                        {% else %}
+                            <div class="listagem_li_avaliacao red">
+                                <a class="nomes" href="{% url 'gym:exibir_avaliacao' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
+                                <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
+                                <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
+                                <form action="{% url 'gym:avaliacao' id=aluno.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="button_icone_circle_avaliacao"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button>
+                                </form>
+                            </div>
+                            
+                        {% endif %}
+                        <!-- <div class="listagem_li_alunos_green">
+                            <a class="nomes" href="#">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
+                            <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
+                        </div> -->
+                    </li>
+                    {% empty %}
+                        <li>
+                            <p>Não tem alunos cadastrados</p>
+                        </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+{% include 'gym/partials/footer_dashboard.html' %}   

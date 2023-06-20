@@ -18,7 +18,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .forms import (AvalicaoRegister, LoginForm, Recuperar_senha, RegisterForm,
                     Valid_Email)
 from .forms.aluno import AlunoRegister
-from .models import Academia, Aluno
+from .models import Academia, Aluno, Avaliacao
 
 
 def home(request):
@@ -336,6 +336,7 @@ def dashboard_aluno_delete(request, pk):
     return redirect('gym:dashboard_aluno')
 
 
+
 @login_required(login_url='gym:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
@@ -348,25 +349,67 @@ def logout_view(request):
     return redirect(reverse('gym:login'))
 
 
-def avaliacao(request):
+def avaliacao(request, id):
     register_form_data = request.session.get('register_form_data', None)
     form = AvalicaoRegister(register_form_data)
 
     return render(request, 'gym/pages/avaliacao.html', {
         'form': form,
+        'id': id
     })
 
 
-def avaliacao_create(request):
+def avaliacao_create(request, id):
     if not request.POST:
         raise Http404()
 
     POST = request.POST
     request.session['register_form_data'] = POST
-    form = Recuperar_senha(POST)
+    form = AvalicaoRegister(POST)
     if form.is_valid():
-        form.save()
+
+        avaliacao = form.save(commit=False)
+        avaliacao.aluno = Aluno.objects.filter(pk=id,academia=request.user).first()
+        avaliacao.academia = request.user
+        avaliacao.save()
 
         # aqui vai ligar aluno, academia e tipo de avaliaçao
         messages.success(request, 'avaliacao feita com sucesso')
-        return redirect(render('gym:dashboard_aluno'))
+    else:
+        messages.error(request, 'aluno não adicionado')
+        return redirect('gym:cadastro_aluno')
+
+    del (request.session['register_form_data'])
+
+    return redirect('gym:dashboard_avaliacao')
+
+
+def dashboard_avaliacao(request):
+    alunos = Aluno.objects.filter(
+        academia=request.user
+    )
+    return render(
+        request,
+        'gym/pages/dashboard_avaliacao.html',
+        {
+            'alunos': alunos,
+        }
+    )
+
+def exibir_avaliacao(request, id):
+    avaliacao = Avaliacao.objects.filter(aluno=id).last()
+
+    # gordura = float((avaliacao.Dobra_tripical + avaliacao.Dobra_abdominal + avaliacao.Dobra_subescapular + avaliacao.Dobra_suprailiaca) * 0.153 + 5,783)
+    # peso_gordo = float(gordura * avaliacao.peso/100)
+    # massa_magra = float(avaliacao.peso - peso_gordo)
+
+    return render(
+        request,
+        'gym/pages/exibir_avaliacao.html',
+        context={
+            'avaliacao': avaliacao,
+            # 'gordura': gordura,
+            # 'peso_gordo': peso_gordo,
+            # 'massa_magra': massa_magra
+        }
+    )
