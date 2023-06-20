@@ -23,9 +23,11 @@ urlpatterns = [
     path('dashboard/dashboard_aluno',
          views.dashboard_aluno, name='dashboard_aluno'),
     path('logout/', views.logout_view, name='logout'),
-    path('dashboard/avaliacao', views.avaliacao, name='avaliacao'),
-    path('dashboard/avaliacao/create',
+    path('dashboard/dashboard_avaliacao/', views.dashboard_avaliacao, name='dashboard_avaliacao'),
+    path('dashboard/avaliacao/<int:id>', views.avaliacao, name='avaliacao'),
+    path('dashboard/avaliacao/create/<int:id>',
          views.avaliacao_create, name='avaliacao_create'),
 
+    path('dashboard/exibir_avaliacao/int<int:id>', views.exibir_avaliacao, name='exibir_avaliacao'),
 
 ]
