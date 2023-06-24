@@ -1,0 +1,12 @@
+{% include 'gym/partials/head.html' %}
+{% include 'gym/partials/message.html' %}
+{% load static%}
+
+<body>
+    <h1>Modificar Dados</h1>
+
+    <form action="{% url 'gym:dashboard_aluno_edit' pk=aluno.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Modificar">
+    </form>

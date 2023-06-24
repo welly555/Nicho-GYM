@@ -1,0 +1,35 @@
+{% include 'gym/partials/head.html' %}
+{% include 'gym/partials/message.html' %}
+{% load static%}
+
+<div class="container-aluno">
+    <div class="container-form-cadastro form-avaliacao">
+        <div class="form">
+            <div class="logo">
+                <img src="{% static 'global/img/logoAcad 1.png' %}" alt="">
+            </div>
+                <div class="form-content form-content-grid ">
+                    <ul>
+                        <li>
+                            <h2>Peso: {{ avaliacao.peso }}</h2>
+                            <h2>Altura: {{ avaliacao.altura }}</h2>
+                            <h2>Dobra Tripical: {{ avaliacao.Dobra_tripical }}</h2>
+                            <h2>Dobra Abdominal: {{ avaliacao.Dobra_abdominal }}</h2>
+                            <h2>Dobra Subescapular {{ avaliacao.Dobra_subescapular }}</h2>
+                            <h2>Dobra Suprailiaca: {{ avaliacao.Dobra_suprailiaca }}</h2>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="">
+                    <div class="form-grup form-button">
+                        <a href="{% url 'gym:dashboard_avaliacao'%}"><button type="button">Voltar</button></a>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+<script src="{% static 'global/js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'global/js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'global/js/mascara.js' %}"></script>
+</div>

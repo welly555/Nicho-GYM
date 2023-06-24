@@ -15,10 +15,12 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-from .forms import LoginForm, Recuperar_senha, RegisterForm, Valid_Email
-from .forms.aluno import AlunoRegister
-from .models import Academia, Aluno
 
+from .forms import (AvalicaoRegister, LoginForm, Recuperar_senha, RegisterForm,
+                    Valid_Email)
+
+from .forms.aluno import AlunoRegister
+from .models import Academia, Aluno, Avaliacao
 
 def home(request):
     return render(request, 'gym/pages/home.html')
@@ -255,22 +257,102 @@ def dashboard(request):
         Situacao=False,
         academia=request.user
     ).count()
+
+    quantidade_avaliacao = Avaliacao.objects.filter(
+        academia=request.user
+    ).count()
     return render(request, 'gym/pages/dashboard.html', context={
         'quantidade_alunos': quantidade_alunos,
-        'quantidade_pendente': quantidade_pendente
+        'quantidade_pendente': quantidade_pendente,
+        'quantidade_avaliacao': quantidade_avaliacao,
+
     })
 
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno(request):
-    alunos = Aluno.objects.filter(
-        academia=request.user
-    )
+    pesquisa = request.GET.get('input')
+    # elemento_id = request.POST.get('delete_aluno')
+    # editar_id = request.POST.get('editar_aluno')
+
+    # if elemento_id:
+    #     elemento = Aluno.objects.get(pk=elemento_id)
+    #     elemento.delete()
+    #     return redirect('gym:dashboard_aluno')
+
+    # if editar_id:
+    #     editar = Aluno.objects.get(pk=editar_id)
+    #     form = AlunoRegister(request.POST, instance=editar)
+    #     if form.is_valid():
+    #         form.save()
+
+    if pesquisa:
+        alunos = Aluno.objects.filter(
+            academia=request.user,
+            Nome=pesquisa
+        )
+    else:
+        alunos = Aluno.objects.filter(
+            academia=request.user
+        )
+
     return render(
         request,
         'gym/pages/dashboard_aluno.html',
         {
             'alunos': alunos,
+        }
+    )
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_aluno_edit(request, pk):
+    editar = Aluno.objects.filter(academia=request.user, pk=pk).first()
+    form = AlunoRegister(
+        data=request.POST or None, 
+        instance=editar,
+    )
+
+    if form.is_valid():
+        aluno = form.save(commit=False)
+        aluno.save()
+
+        return redirect(reverse(
+            'gym:dashboard_aluno_edit',
+            args=(pk)
+        ))
+
+    # form =AlunoRegister(request.POST, instance=editar)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect(reverse(
+    #         'gym:dashboard_aluno_edit',
+    #         args=(pk,)
+            
+    #     ))
+    return render(
+        request, 
+        'gym/pages/teste.html',
+        context={
+                'form' : form
+        }
+    )
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_aluno_delete(request, pk):
+    # delete_id = request.POST.get('delete_aluno')
+    delete = Aluno.objects.get(pk=pk)
+    delete.delete()
+    return redirect('gym:dashboard_aluno')
+
+def exibir_aluno(request, id):
+    aluno = Aluno.objects.filter(pk=id).first()
+
+    return render(
+        request,
+        'gym/pages/exibir_aluno.html',
+        context={
+                'aluno': aluno
         }
     )
 
@@ -285,3 +367,72 @@ def logout_view(request):
         return redirect(reverse('gym:login'))
     logout(request)
     return redirect(reverse('gym:login'))
+
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def avaliacao(request, id):
+    register_form_data = request.session.get('register_form_data', None)
+    form = AvalicaoRegister(register_form_data)
+
+    return render(request, 'gym/pages/avaliacao.html', {
+        'form': form,
+        'id': id
+    })
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def avaliacao_create(request, id):
+    if not request.POST:
+        raise Http404()
+
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = AvalicaoRegister(POST)
+    if form.is_valid():
+
+        avaliacao = form.save(commit=False)
+        avaliacao.aluno = Aluno.objects.filter(pk=id,academia=request.user).first()
+        avaliacao.academia = request.user
+        avaliacao.save()
+
+        # aqui vai ligar aluno, academia e tipo de avaliaçao
+        messages.success(request, 'avaliacao feita com sucesso')
+    else:
+        messages.error(request, 'aluno não adicionado')
+        return redirect('gym:cadastro_aluno')
+
+    del (request.session['register_form_data'])
+
+    return redirect('gym:dashboard_avaliacao')
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def dashboard_avaliacao(request):
+    alunos = Aluno.objects.filter(
+        academia=request.user
+    )
+    return render(
+        request,
+        'gym/pages/dashboard_avaliacao.html',
+        {
+            'alunos': alunos,
+        }
+    )
+
+@login_required(login_url='gym:login', redirect_field_name='next')
+def exibir_avaliacao(request, id):
+    avaliacao = Avaliacao.objects.filter(aluno=id).last()
+
+    # gordura = float((avaliacao.Dobra_tripical + avaliacao.Dobra_abdominal + avaliacao.Dobra_subescapular + avaliacao.Dobra_suprailiaca) * 0.153 + 5,783)
+    # peso_gordo = float(gordura * avaliacao.peso/100)
+    # massa_magra = float(avaliacao.peso - peso_gordo)
+
+    return render(
+        request,
+        'gym/pages/exibir_avaliacao.html',
+        context={
+            'avaliacao': avaliacao,
+            # 'gordura': gordura,
+            # 'peso_gordo': peso_gordo,
+            # 'massa_magra': massa_magra
+        }
+    )
+

@@ -22,7 +22,18 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/dashboard_aluno',
          views.dashboard_aluno, name='dashboard_aluno'),
-    path('logout/', views.logout_view, name='logout')
+
+    path('dashboard/dashboard_aluno/<int:pk>/edit', views.dashboard_aluno_edit, name='dashboard_aluno_edit'),
+    path('dashboard/dashboard_aluno/<int:pk>/delete', views.dashboard_aluno_delete, name='dashboard_aluno_delete'),
+    path('logout/', views.logout_view, name='logout'),
+    path('dashboard/dashboard_avaliacao/', views.dashboard_avaliacao, name='dashboard_avaliacao'),
+    path('dashboard/avaliacao/<int:id>', views.avaliacao, name='avaliacao'),
+    path('dashboard/avaliacao/create/<int:id>',
+         views.avaliacao_create, name='avaliacao_create'),
+
+    path('dashboard/exibir_avaliacao/int<int:id>', views.exibir_avaliacao, name='exibir_avaliacao'),
+    path('dashboard/exibir_aluno/int<int:id>', views.exibir_aluno, name='exibir_aluno'),
+
 
 
 ]

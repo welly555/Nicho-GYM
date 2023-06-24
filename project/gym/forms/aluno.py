@@ -31,17 +31,21 @@ class AlunoRegister(forms.ModelForm):
         add_placeholder(self.fields['telefone'], '(00) 00000-0000')
         self.fields['Data_Nascimento'].widget.attrs.update(
             {'class': 'mask-date'})
-        # self.fields['Data_pagamento'].widget.attrs.update({'class': 'mask-date'})
+
+        self.fields['Data_pagamento'].widget.attrs.update({'class': 'mask-date'})
+
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
         self.fields['Valor_pagamento'].widget.attrs.update(
             {'class': 'mask-money'})
 
     Nome = forms.CharField(
         label='Nome do aluno:',
+        max_length=20
     )
 
     sobrenome = forms.CharField(
         label='Sobrenome:',
+        max_length=20
     )
 
     E_mail = forms.EmailField(
@@ -59,8 +63,10 @@ class AlunoRegister(forms.ModelForm):
 
     Data_pagamento = forms.DateField(
         label='Data do proximo pargamento:',
-        input_formats=['%d/%m/%Y'],
-        initial=datetime.date.today() + timedelta(days=30),
+
+        # input_formats=['%d/%m/%Y'],
+        # initial=datetime.date.today() + timedelta(days=30),
+
     )
 
     Situacao = forms.BooleanField(
