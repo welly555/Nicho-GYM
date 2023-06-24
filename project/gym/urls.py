@@ -35,4 +35,5 @@ urlpatterns = [
     path('dashboard/exibir_aluno/int<int:id>', views.exibir_aluno, name='exibir_aluno'),
 
 
+
 ]

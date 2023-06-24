@@ -17,6 +17,7 @@
         <div class="pesquisa">
             <div class="itens">
                 <div class="barra_pesquisa">
+
                     <form action="" method="get">
                         {% csrf_token %}
                         <input type="text" name="input" class="input">
@@ -24,6 +25,7 @@
                     </form>
                         <!-- <input type="text" name="input" class="input">
                         <button type="submit" class="button_pesquisa"><i class="fa-solid fa-magnifying-glass icone_pesquisa "></i></button> -->
+
                 </div>
                 <button class="button_icone_filter"><i class="fa-sharp fa-solid fa-filter icone_filter"></i></button>
                 <a href="{% url 'gym:cadastro_aluno' %}"><button class="button_icone_circle"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button></a>
@@ -38,6 +40,7 @@
                     <li>
                         {% if aluno.Situacao %}
                             <div class="listagem_li_alunos green">
+
                                 <a class="nomes" href="{% url 'gym:exibir_aluno' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
                                 <form action="{% url 'gym:dashboard_aluno_edit' aluno.id %}" method="post">
                                     {% csrf_token %}
@@ -65,6 +68,7 @@
                                 </form>
                             </div>
                         {% endif %}
+
                     </li>
                     {% empty %}
                         <li>

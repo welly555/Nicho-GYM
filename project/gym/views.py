@@ -15,11 +15,12 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+
 from .forms import (AvalicaoRegister, LoginForm, Recuperar_senha, RegisterForm,
                     Valid_Email)
+
 from .forms.aluno import AlunoRegister
 from .models import Academia, Aluno, Avaliacao
-
 
 def home(request):
     return render(request, 'gym/pages/home.html')
@@ -256,6 +257,7 @@ def dashboard(request):
         Situacao=False,
         academia=request.user
     ).count()
+
     quantidade_avaliacao = Avaliacao.objects.filter(
         academia=request.user
     ).count()
@@ -263,6 +265,7 @@ def dashboard(request):
         'quantidade_alunos': quantidade_alunos,
         'quantidade_pendente': quantidade_pendente,
         'quantidade_avaliacao': quantidade_avaliacao,
+
     })
 
 
@@ -292,6 +295,7 @@ def dashboard_aluno(request):
         alunos = Aluno.objects.filter(
             academia=request.user
         )
+
     return render(
         request,
         'gym/pages/dashboard_aluno.html',
@@ -299,6 +303,7 @@ def dashboard_aluno(request):
             'alunos': alunos,
         }
     )
+
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno_edit(request, pk):
@@ -351,6 +356,7 @@ def exibir_aluno(request, id):
         }
     )
 
+
 @login_required(login_url='gym:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
@@ -361,6 +367,7 @@ def logout_view(request):
         return redirect(reverse('gym:login'))
     logout(request)
     return redirect(reverse('gym:login'))
+
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def avaliacao(request, id):
@@ -428,3 +435,4 @@ def exibir_avaliacao(request, id):
             # 'massa_magra': massa_magra
         }
     )
+
