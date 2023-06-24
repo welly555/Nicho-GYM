@@ -38,10 +38,12 @@ class AlunoRegister(forms.ModelForm):
 
     Nome = forms.CharField(
         label='Nome do aluno:',
+        max_length=20
     )
 
     sobrenome = forms.CharField(
         label='Sobrenome:',
+        max_length=20
     )
 
     E_mail = forms.EmailField(

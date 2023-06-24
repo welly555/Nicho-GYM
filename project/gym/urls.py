@@ -32,6 +32,7 @@ urlpatterns = [
          views.avaliacao_create, name='avaliacao_create'),
 
     path('dashboard/exibir_avaliacao/int<int:id>', views.exibir_avaliacao, name='exibir_avaliacao'),
+    path('dashboard/exibir_aluno/int<int:id>', views.exibir_aluno, name='exibir_aluno'),
 
 
 ]

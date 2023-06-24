@@ -32,8 +32,8 @@
                         {% if aluno.Situacao %}
                             <div class="listagem_li_avaliacao green">
                                 <a class="nomes" href="{% url 'gym:exibir_avaliacao' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
-                                <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
-                                <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
+                                <button class="button_icone_pen_avaliacao"> <i class="fa-solid fa-pen"></i> </button>
+                                <button class="button_icone_trash_avaliacao"><i class="fa-solid fa-trash"></i></button>
                                 <form action="{% url 'gym:avaliacao' id=aluno.id %}" method="post">
                                     {% csrf_token %}
                                     <button class="button_icone_circle_avaliacao"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button>
@@ -43,8 +43,8 @@
                         {% else %}
                             <div class="listagem_li_avaliacao red">
                                 <a class="nomes" href="{% url 'gym:exibir_avaliacao' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
-                                <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
-                                <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
+                                <button class="button_icone_pen_avaliacao"> <i class="fa-solid fa-pen"></i> </button>
+                                <button class="button_icone_trash_avaliacao"><i class="fa-solid fa-trash"></i></button>
                                 <form action="{% url 'gym:avaliacao' id=aluno.id %}" method="post">
                                     {% csrf_token %}
                                     <button class="button_icone_circle_avaliacao"><i class="fa-solid fa-circle-plus icone_circle_plus"> </i></button>
@@ -52,11 +52,6 @@
                             </div>
                             
                         {% endif %}
-                        <!-- <div class="listagem_li_alunos_green">
-                            <a class="nomes" href="#">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
-                            <button class="button_icone_pen"> <i class="fa-solid fa-pen"></i> </button>
-                            <button class="button_icone_trash"><i class="fa-solid fa-trash"></i></button>
-                        </div> -->
                     </li>
                     {% empty %}
                         <li>
