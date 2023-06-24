@@ -256,9 +256,13 @@ def dashboard(request):
         Situacao=False,
         academia=request.user
     ).count()
+    quantidade_avaliacao = Avaliacao.objects.filter(
+        academia=request.user
+    ).count()
     return render(request, 'gym/pages/dashboard.html', context={
         'quantidade_alunos': quantidade_alunos,
-        'quantidade_pendente': quantidade_pendente
+        'quantidade_pendente': quantidade_pendente,
+        'quantidade_avaliacao': quantidade_avaliacao,
     })
 
 
@@ -296,6 +300,7 @@ def dashboard_aluno(request):
         }
     )
 
+@login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_aluno_edit(request, pk):
     editar = Aluno.objects.filter(academia=request.user, pk=pk).first()
     form = AlunoRegister(
@@ -335,7 +340,16 @@ def dashboard_aluno_delete(request, pk):
     delete.delete()
     return redirect('gym:dashboard_aluno')
 
+def exibir_aluno(request, id):
+    aluno = Aluno.objects.filter(pk=id).first()
 
+    return render(
+        request,
+        'gym/pages/exibir_aluno.html',
+        context={
+                'aluno': aluno
+        }
+    )
 
 @login_required(login_url='gym:login', redirect_field_name='next')
 def logout_view(request):
@@ -348,7 +362,7 @@ def logout_view(request):
     logout(request)
     return redirect(reverse('gym:login'))
 
-
+@login_required(login_url='gym:login', redirect_field_name='next')
 def avaliacao(request, id):
     register_form_data = request.session.get('register_form_data', None)
     form = AvalicaoRegister(register_form_data)
@@ -358,7 +372,7 @@ def avaliacao(request, id):
         'id': id
     })
 
-
+@login_required(login_url='gym:login', redirect_field_name='next')
 def avaliacao_create(request, id):
     if not request.POST:
         raise Http404()
@@ -383,7 +397,7 @@ def avaliacao_create(request, id):
 
     return redirect('gym:dashboard_avaliacao')
 
-
+@login_required(login_url='gym:login', redirect_field_name='next')
 def dashboard_avaliacao(request):
     alunos = Aluno.objects.filter(
         academia=request.user
@@ -396,6 +410,7 @@ def dashboard_avaliacao(request):
         }
     )
 
+@login_required(login_url='gym:login', redirect_field_name='next')
 def exibir_avaliacao(request, id):
     avaliacao = Avaliacao.objects.filter(aluno=id).last()
 

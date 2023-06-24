@@ -38,7 +38,7 @@
                     <li>
                         {% if aluno.Situacao %}
                             <div class="listagem_li_alunos green">
-                                <a class="nomes" href="#">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
+                                <a class="nomes" href="{% url 'gym:exibir_aluno' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
                                 <form action="{% url 'gym:dashboard_aluno_edit' aluno.id %}" method="post">
                                     {% csrf_token %}
                                     <!-- <input type="hidden" name="editar_aluno" value="{{ aluno.id }}"> -->
@@ -52,7 +52,7 @@
                             </div>
                         {% else %}
                             <div class="listagem_li_alunos red">
-                                <a class="nomes" href="#">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
+                                <a class="nomes" href="{% url 'gym:exibir_aluno' id=aluno.id %}">{{ aluno.Nome }} {{ aluno.sobrenome }}</a>
                                 <form action="{% url 'gym:dashboard_aluno_edit' aluno.id %}" method="post">
                                     {% csrf_token %}
                                     <!-- <input type="hidden" name="editar_aluno" value="{{ aluno.id }}"> -->
